@@ -1,0 +1,16 @@
+version: 2
+models:
+  - name: osiris_clean_modalityandtechniquert_Procedure
+    description: Mapping of OSIRIS_pivot_ModalityAndTechniqueRT data to fhir path
+    columns:
+      - name: id_modality_technique
+        description: Mapping of Instance_Id
+        tests:
+          - dbt_constraints.primary_key
+      - name: extension_modandtech_radiotherapyTechnique
+        description: Mapping of ModalityAndTechnique_Technique
+      - name: extension_modandtech_radiotherapyTreatmentMachinePlanned
+        description: Mapping of ModalityAndTechnique_TreatmentMachinePlanned
+      - name: extension_modandtech_radiotherapyModality
+        description: Mapping of ModalityAndTechnique_Modality
+

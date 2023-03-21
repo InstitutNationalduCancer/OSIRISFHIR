@@ -1,0 +1,27 @@
+version: 2
+models:
+  - name: osiris_clean_commonimage_ImagingStudy
+    description: Mapping of OSIRIS_pivot_CommonImage data to fhir path
+    columns:
+      - name: id_commonimage
+        description: Mapping of Instance_Id (Primary Key)
+        tests:
+          - dbt_constraints.primary_key
+      - name: series
+        description: Mapping of Series_Ref (Foreign Key from osiris_clean_series_Imaging_Study)
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_series_ImagingStudy')
+              pk_column_name: id_series
+      - name: series_instance_uid
+        description: Mapping of CommonImage_SOPInstanceUID
+      - name: series_extension_slice_thickness
+        description: Mapping of CommonImage_SliceThickness
+      - name: series_extension_pixel_spacing
+        description: Mapping of CommonImage_SliceThickness
+      - name: series_extension_field_of_view
+        description: Mapping of CommonImage_FieldOfView
+      - name: series_extension_rows
+        description: Mapping of CommonImage_Rows
+      - name: series_extension_columns
+        description: Mapping of CommonImage_Columns

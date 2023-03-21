@@ -1,0 +1,12 @@
+version: 2
+models:
+  - name: osiris_clean_injection_Medication
+    description: "Mapping of OSIRIS_pivot_Injection data to fhir path"
+    columns:
+      - name: "id_medication"
+        description: Primary Key
+        tests:
+          - dbt_constraints.primary_key
+      - name: "code_text"
+        description: "Mapping of Injection_ContrastBolusAgent and Injection_Radiopharmaceutical"
+

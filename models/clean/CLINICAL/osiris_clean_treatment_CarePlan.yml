@@ -1,0 +1,33 @@
+version: 2
+models:
+  - name: osiris_clean_treatment_CarePlan
+    description: Mapping of OSIRIS_pivot_Treatment data to fhir path
+    columns:
+      - name: id_treatment
+        description: Mapping of Instance_Id (Primary Key)
+        tests:
+          - dbt_constraints.primary_key
+      - name: subject
+        description: Mapping of Patient_Id (Foreign Key from osiris_clean_patient_Patient)
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_patient_Patient')
+              pk_column_name: id_patient
+      - name: "supportinginfo"
+        description: Mapping of Treatment_ClinicalTrialId
+      - name: "activity_detail_reasonreference"
+        description: Mapping of TumorPathologyEvent_Ref (Foreign Key from osiris_clean_tpe_Condition)
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_tpe_Condition')
+              pk_column_name: id_condition
+      - name: "category_coding_code"
+        description: Mapping of Treatment_Type
+      - name: "period_start"
+        description: Mapping of Treatment_StartDate
+      - name: "period_end"
+        description: Mapping of Treatment_EndDate
+      - name: extension_treatment_line
+        description: Mapping of Treatment_LineNumber
+      - name: activity_activity_code
+        description: Mapping of Treatment_ActivityCode

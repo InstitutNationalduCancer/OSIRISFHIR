@@ -1,0 +1,37 @@
+version: 2
+models:
+  - name: osiris_clean_dosetovolumert_Procedure
+    description: Mapping of OSIRIS_pivot_DoseToVolumeRT data to fhir path
+    columns:
+      - name: pk
+        description: Primary Key
+        tests:
+          - dbt_constraints.primary_key
+      - name: id_dosetovolume
+        description: Mapping of Instance_Id
+        # tests:
+        #   - dbt_constraints.primary_key
+      - name: subject
+        description: Mapping of Patient_Id
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_patient_Patient')
+              pk_column_name: id_patient
+      - name: plan
+        description: Mapping of PlanRT_Ref
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_planrt_Procedure')
+              pk_column_name: id_planrt
+      - name: volume
+        description: Mapping of VolumeRT_Ref
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_volumert_BodyStructure')
+              pk_column_name: id_volume
+      - name: extension_dosetovolume_totalDose
+        description: Mapping of DoseToVolume_TotalDose
+      - name: extension_dosetovolume_fractionDose
+        description: Mapping of DoseToVolume_FractionDose
+      - name: extension_dosetovolume_numberOfFractions
+        description: Mapping of DoseToVolume_NumberOfFractions

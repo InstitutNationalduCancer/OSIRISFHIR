@@ -1,0 +1,12 @@
+version: 2
+seeds:
+  - name: code_system_patient
+    description: The source of the valueset is http://terminology.hl7.org/ValueSet/v3-Race
+    columns:
+      - name: code
+        description: Code in the system code used
+      - name: display
+        description: Display of the code
+      - name: code_system
+        description: System code from which the code is derived
+        

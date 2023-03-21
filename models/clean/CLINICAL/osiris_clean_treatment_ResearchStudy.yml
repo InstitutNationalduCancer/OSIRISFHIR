@@ -1,0 +1,13 @@
+version: 2
+models:
+  - name: osiris_clean_treatment_ResearchStudy
+    description: Mapping of OSIRIS_pivot_Treatment data to fhir path
+    columns:
+      - name: id_researchstudy
+        description: Primary Key 
+        tests:
+          - dbt_constraints.primary_key
+      - name: "identifier_value"
+        description: Mapping of Treatment_ClinicalTrialId
+      - name: "title"
+        description: Mapping of Treatment_ClinicalTrialName

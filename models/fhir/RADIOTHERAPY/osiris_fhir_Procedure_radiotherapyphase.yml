@@ -1,0 +1,11 @@
+version: 2
+models:
+  - name: osiris_fhir_Procedure_radiotherapyphase
+    description: Create the RadiotherapyPhase profil from Procedure resource (osiris_master_tab_Procedure_radiotherapyphase)
+    columns:
+      - name: id
+        description: Id
+        tests:
+          - dbt_constraints.primary_key
+      - name: fhir
+        description: Fhir format of the instance

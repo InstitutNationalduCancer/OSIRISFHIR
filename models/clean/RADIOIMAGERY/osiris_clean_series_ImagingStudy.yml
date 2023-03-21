@@ -1,0 +1,39 @@
+version: 2
+models:
+  - name: osiris_clean_series_ImagingStudy
+    description: Mapping of OSIRIS_pivot_Series data to fhir path
+    columns:
+      - name: id_series
+        description: Mapping of Instance_Id (Primary Key)
+        tests:
+          - dbt_constraints.primary_key
+      - name: series_performer_actor
+        description: Mapping of Equipment_Ref (Foreign Key from osiris_clean_equipment_Device)
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_equipment_Device')
+              pk_column_name: id_device
+      - name: imagingstudy
+        description: Mapping of Study_Ref (Foreign Key from osiris_clean_study_ImagingStudy)
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_study_ImagingStudy')
+              pk_column_name: id_imagingstudy
+      - name: series_number
+        description: Mapping of Series_SeriesNumber
+      - name: series_uid
+        description: Mapping of Series_SeriesInstanceUID
+      - name: series_modality_code
+        description: Mapping of Series_Modality
+      - name: series_started
+        description: Mapping of Series_AcquisitionDate
+      - name: series_description
+        description: Mapping of Series_Description
+      - name: series_bodySite_code
+        description: Mapping of Series_BodyPartExamined
+      - name: series_numberOfInstances
+        description: Mapping of Series_NbSeriesRelatedInstances
+      - name: series_extension_patient_weight
+        description: Mapping of Series_PatientWeight
+      - name: series_extension_patient_height
+        description: Mapping of Series_PatientSize

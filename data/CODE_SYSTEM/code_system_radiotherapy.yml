@@ -1,0 +1,12 @@
+version: 2
+seeds:
+  - name: code_system_radiotherapy
+    description: The source of the code_system is http://snomed.info/sct, http://hl7.org/fhir/us/mcode/CodeSystem/snomed-requested-cs and https://build.fhir.org/ig/HL7/codex-radiation-therapy/CodeSystem-snomed-requested-cs.html
+    columns:
+      - name: code
+        description: Code in the system code used
+      - name: display
+        description: Display of the code
+      - name: code_system
+        description: System code from which the code is derived
+        

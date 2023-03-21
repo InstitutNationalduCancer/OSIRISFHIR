@@ -1,0 +1,39 @@
+version: 2
+models:
+  - name: osiris_clean_study_ImagingStudy
+    description: "Mapping of OSIRIS_pivot_Study data to fhir path"
+    columns:
+      - name: "id_imagingstudy"
+        description: "Mapping of Instance_Id"
+        tests:
+          - dbt_constraints.primary_key
+      - name: "endpoint"
+        description: "Mapping of Study_Location"
+      - name: "location"
+        description: "Mapping of Study_InstitutionName"
+      - name: "subject"
+        description: "Mapping of Patient_Id (Foreign Key from osiris_clean_patient_Patient)"
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_patient_Patient')
+              pk_column_name: id_patient
+      - name: "reasonreference"
+        description: "Mapping of Analysis_Ref  (Foreign key from osiris_clean_analysis_Observation)"
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_analysis_Observation')
+              pk_column_name: id_observation
+      - name: "identifier_value"
+        description: "Mapping of Study_StudyInstanceUID"
+      - name: "description"
+        description: "Mapping of Study_StudyDescription"
+      - name: "modality"
+        description: "Mapping of Study_ModalitiesInStudy"
+      - name: "numberOfSeries"
+        description: "Mapping of Study_NbStudyRelatedSeries"
+      - name: "started"
+        description: "Mapping of Study_AcquisitionDate"
+
+
+
+      

@@ -1,0 +1,27 @@
+version: 2
+models:
+  - name: osiris_clean_radiomicsfeature_Observation
+    description: Mapping of OSIRIS_pivot_Treatment data to fhir path
+    columns:
+      - name: id_feature
+        description: Mapping of Instance_Id (Primary Key)
+        tests:
+          - dbt_constraints.primary_key
+      - name: subject
+        description: Mapping of Subject_Id (Foreign Key from osiris_clean_patient_Patient)
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_patient_Patient')
+              pk_column_name: id_patient
+      - name: hasmember
+        description: Mapping of Subject_Id (Foreign Key from osiris_clean_radiomicscriteria_Observation)
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_radiomicscriteria_Observation')
+              pk_column_name: id_criteria
+      - name: code_coding_code
+        description: Mapping of RadiomicsFeature_Id
+      - name: code_coding_text
+        description: Mapping of RadiomicsFeature_Name
+      - name: value
+        description: Mapping of RadiomicsFeature_Value
