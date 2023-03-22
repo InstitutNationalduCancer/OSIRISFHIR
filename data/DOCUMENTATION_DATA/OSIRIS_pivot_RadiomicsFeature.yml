@@ -1,0 +1,17 @@
+version: 2
+seeds:
+  - name: OSIRIS_pivot_RadiomicsFeature
+    description: OSIRIS_pivot_RadiomicsFeature available at https://github.com/siric-osiris/OSIRIS/blob/MED-OSIRIS/pivot/OSIRIS_pivot_RadiomicsFeature.csv
+    columns:
+      - name: Instance_Id
+        description: Primary Key
+      - name: Patient_Id
+        description: Foreign Key from OSIRIS_pivot_Patient
+      - name: RadiomicsCriteria_Ref
+        description: Foreign Key from OSIRIS_pivot_RadiomicsCriteria
+      - name: RadiomicsFeature_Name
+        description: "Name of the radiomic measure in the IBSI nomenclature"
+      - name: RadiomicsFeature_Value
+        description: "Unique number in the IBSI nomenclature"
+      - name: RadiomicsFeature_Id
+        description: "Value"

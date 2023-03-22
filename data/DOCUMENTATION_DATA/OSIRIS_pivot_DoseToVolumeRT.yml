@@ -1,0 +1,19 @@
+version: 2
+seeds:
+  - name: OSIRIS_pivot_DoseToVolumeRT
+    description: OSIRIS_pivot_DoseToVolumeRT available at https://github.com/siric-osiris/OSIRIS/blob/MED-OSIRIS/pivot/OSIRIS_pivot_DoseToVolumeRT.csv
+    columns:
+      - name: Instance_Id
+        description: Primary Key
+      - name: Patient_Id
+        description: Foreign Key from OSIRIS_pivot_Patient
+      - name: PlanRT_Ref
+        description: Foreign Key from OSIRIS_pivot_PlanRT
+      - name: VolumeRT_Ref
+        description: Foreign Key from OSIRIS_pivot_VolumeRT
+      - name: DoseToVolume_FractionDose
+        description: "Expected radiation dose per fraction. The division numberOfFractions/totalDose must be done"
+      - name: DoseToVolume_NumberOfFractions
+        description: Number of fractions expected. Dicom Tag (300A,0078)
+      - name: DoseToVolume_TotalDose
+        description: "The total amount of radiation delivered to this volume. Dicom Tag (300A, 0026). If delivred, it should be extracted from MOSAIQ/ARIA Record and Verify"

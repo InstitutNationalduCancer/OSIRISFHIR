@@ -1,0 +1,13 @@
+version: 2
+seeds:
+  - name: OSIRIS_pivot_Consent
+    description: OSIRIS_pivot_Consent available at https://github.com/siric-osiris/OSIRIS/blob/MED-OSIRIS/pivot/OSIRIS_pivot_Consent.csv
+    columns:
+      - name: Instance_Id
+        description: Primary Key
+      - name: Patient_Id
+        description: Foreign Key from OSIRIS_pivot_Patient
+      - name: Consent_Date
+        description: "Date of signature of the patient's free and informed consent."
+      - name: Consent_GeneticAnalysisAuthorization
+        description: "Has the patient given consent for his/her data to be used for genetic analysis?"
