@@ -306,7 +306,7 @@ SELECT
             'reference', fhir_ref(
                 'Patient',
                 '{{ ref("osiris_master_tab_Patient") }}',
-                planrt."subject"::VARCHAR
+                planrt."subject"
             )
         ),
         'partOf', json_build_array(
