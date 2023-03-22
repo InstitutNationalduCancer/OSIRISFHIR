@@ -24,7 +24,7 @@ SELECT
         'subject', json_build_object(
             'reference', fhir_ref(
                 'Patient',
-                '"osiris_master_tab_Patient"',
+                '{{ ref("osiris_master_tab_Patient") }}',
                 criteria."subject"::VARCHAR
             )
         ),
@@ -32,7 +32,7 @@ SELECT
             json_build_object(
                 'reference', fhir_ref(
                     'Observation',
-                    '"osiris_master_tab_Observation_roisegmentation"',
+                    '{{ ref("osiris_master_tab_Observation_roisegmentation") }}',
                     criteria."focus"::VARCHAR
                 )
             )
@@ -40,7 +40,7 @@ SELECT
         'hasMember', json_build_array(json_build_object(
                 'reference', fhir_ref(
                     'Observation',
-                    '"osiris_master_tab_Observation_radiomicsimagefilter"',
+                    '{{ ref("osiris_master_tab_Observation_radiomicsimagefilter") }}',
                     criteria."hasmember"::VARCHAR
                 )
             )

@@ -87,7 +87,7 @@ SELECT
             json_build_object(
                 'reference', fhir_ref(
                     'ImagingStudy',
-                    '"osiris_master_tab_ImagingStudy"',
+                    '{{ ref("osiris_master_tab_ImagingStudy") }}',
                     roisegmentation."id_imagingstudy"::VARCHAR
                 )
             )
@@ -110,7 +110,7 @@ SELECT
         'subject', json_build_object(
             'reference', fhir_ref(
                 'Patient',
-                '"osiris_master_tab_Patient"',
+                '{{ ref("osiris_master_tab_Patient") }}',
                 roisegmentation."subject"::VARCHAR
             )
         )

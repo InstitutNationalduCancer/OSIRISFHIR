@@ -35,7 +35,7 @@ SELECT
         'subject', json_build_object(
             'reference', fhir_ref(
                 'Patient',
-                '"osiris_master_tab_Patient"',
+                '{{ ref("osiris_master_tab_Patient") }}',
                 condition."subject"
             )
         ),
@@ -74,7 +74,7 @@ SELECT
                         'valueReference', json_build_object(
                             'reference', fhir_ref(
                                 'Condition',
-                                '"osiris_master_tab_Condition"',
+                                '{{ ref("osiris_master_tab_Condition") }}',
                                 condition."extension_due_to_valuereference"::VARCHAR)
                         )
                     ) END,

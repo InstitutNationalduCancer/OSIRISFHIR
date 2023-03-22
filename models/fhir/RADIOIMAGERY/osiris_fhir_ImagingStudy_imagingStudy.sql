@@ -73,7 +73,7 @@ series_object AS (
                                     'valueReference', json_build_object(
                                         'reference', fhir_ref(
                                             'MedicationAdministration',
-                                            '"osiris_master_tab_MedicationAdministration"',
+                                            '{{ ref("osiris_master_tab_MedicationAdministration") }}',
                                             imagingstudy."id_medication_administration"::varchar
                                         )
                                     ),
@@ -274,7 +274,7 @@ series_object AS (
                     'actor', json_build_object(
                         'reference', fhir_ref(
                             'Device',
-                            '"osiris_master_tab_Device"',
+                            '{{ ref("osiris_master_tab_Device") }}',
                             imagingstudy."series_performer_actor"::varchar
                         )
                     )
@@ -333,7 +333,7 @@ imagingstudy AS (
             'subject', json_build_object(
                 'reference', fhir_ref(
                     'Patient',
-                    '"osiris_master_tab_Patient"',
+                    '{{ ref("osiris_master_tab_Patient") }}',
                     "subject"::varchar
                 )
             ),
@@ -342,14 +342,14 @@ imagingstudy AS (
                 json_build_object(
                     'reference', fhir_ref(
                         'Endpoint',
-                        '"osiris_master_tab_Endpoint"',
+                        '{{ ref("osiris_master_tab_Endpoint") }}',
                         "endpoint")
                 )
             ),
             'location', json_build_object(
                 'reference', fhir_ref(
                     'Location',
-                    '"osiris_master_tab_Location"',
+                    '{{ ref("osiris_master_tab_Location") }}',
                     "location")
             ),
             'numberOfSeries', "numberOfSeries",
@@ -357,7 +357,7 @@ imagingstudy AS (
                 json_build_object(
                     'reference', fhir_ref(
                         'Observation',
-                        '"osiris_master_tab_Observation_analysis"',
+                        '{{ ref("osiris_master_tab_Observation_analysis") }}',
                         "reasonreference"::varchar)
                 )
             ),
