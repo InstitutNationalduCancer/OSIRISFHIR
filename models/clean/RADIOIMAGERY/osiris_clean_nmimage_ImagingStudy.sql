@@ -1,5 +1,6 @@
 SELECT
     "Instance_Id" AS "id_nmimage",
+    "Patient_Id" AS "subject",
     "CommonImage_Ref" AS "commonimage",
     "NMImage_AttenuationCorrectionMethod" AS
     "series_extension_nmimage_attenuation_correction_method",
@@ -7,4 +8,3 @@ SELECT
     "NMImage_ScatterCorrectionMethod" AS "series_extension_nmimage_scatter_correction_method"
 FROM
     {{ ref('OSIRIS_pivot_NMImage') }}
-

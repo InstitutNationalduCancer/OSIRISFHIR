@@ -1,5 +1,6 @@
 SELECT
     "Instance_Id" AS "id_ctimage",
+    "Patient_Id" AS "subject",
     "CommonImage_Ref" AS "commonimage",
     "CTImage_KVp" AS "series_extension_ctimage_kvp",
     "CTImage_XRayTubeCurrent" AS "series_extension_ctimage_xray_tube_current",

@@ -21,7 +21,7 @@ models:
         description: Mapping of Study_ModalitiesInStudy
       - name: started
         description: Mapping of Study_AcquisitionDate
-      - name: endpoint
+      - name: id_endpoint
         description: Mapping of Study_Location (Foreign Key from osiris_master_Endpoint)
         tests:
           - dbt_constraints.foreign_key:

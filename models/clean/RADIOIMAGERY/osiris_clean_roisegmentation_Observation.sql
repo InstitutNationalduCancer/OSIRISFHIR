@@ -24,10 +24,4 @@ SELECT
         ELSE "ROISegmentation_ROIFilename"
     END AS "identifier_file_value"
 FROM
-    {{ ref('OSIRIS_pivot_ROISegmentation') }}
-WHERE
-    "Series_Ref" IN (
-        SELECT "id_series"
-        FROM
-            {{ ref('osiris_clean_series_ImagingStudy') }}
-    )
+    {{ ref ('OSIRIS_pivot_ROISegmentation') }}

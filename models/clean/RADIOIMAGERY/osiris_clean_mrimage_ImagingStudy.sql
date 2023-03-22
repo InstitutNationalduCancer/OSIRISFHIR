@@ -1,5 +1,6 @@
 SELECT
     "Instance_Id" AS "id_mrimage",
+    "Patient_Id" AS "subject",
     "CommonImage_Ref" AS "commonimage",
     CASE
         WHEN "MRImage_SequenceName" = 'UMLS:C0439673' THEN 'Unknown'

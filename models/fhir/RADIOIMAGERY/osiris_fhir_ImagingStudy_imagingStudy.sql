@@ -12,7 +12,7 @@ output/chtml/part04/sect_B.5.html#table_B.5-1'
             )
         ) AS fhir
     FROM
-        {{ ref('osiris_master_tab_ImagingStudy') }}
+        {{ ref('osiris_master_tab_ImagingStudy') }} imagingstudy
 ),
 
 instances_array AS (
@@ -25,7 +25,7 @@ instances_array AS (
 
 series_object AS (
     SELECT DISTINCT ON (imagingstudy."id_series")
-        imagingstudy."id_imagingstudy" AS id,
+        imagingstudy."id_imagingstudy"::VARCHAR AS id,
         imagingstudy."id_series",
         json_build_object(
             'extension', json_build_array( --global extension array
@@ -67,16 +67,18 @@ series_object AS (
                                     'valueInteger', imagingstudy."series_extension_columns",
                                     'url', 'columns'
                                 ) END,
-                            json_build_object(
-                                'valueReference', json_build_object(
-                                    'reference', fhir_ref(
-                                        'MedicationAdministration',
-                                        '"osiris_master_tab_MedicationAdministration"',
-                                        imagingstudy."id_medication_administration"::varchar
-                                    )
-                                ),
-                                'url', 'imaging_injection'
-                            ),
+                            CASE WHEN
+                                imagingstudy."id_medication_administration" IS NOT NULL
+                                THEN json_build_object(
+                                    'valueReference', json_build_object(
+                                        'reference', fhir_ref(
+                                            'MedicationAdministration',
+                                            '"osiris_master_tab_MedicationAdministration"',
+                                            imagingstudy."id_medication_administration"::varchar
+                                        )
+                                    ),
+                                    'url', 'imaging_injection'
+                                ) END,
                             CASE
                                 WHEN
                                     imagingstudy."series_modality_code" = 'CT' 
@@ -290,9 +292,9 @@ series_object AS (
         {{ ref('osiris_master_tab_ImagingStudy_codeableConcept') }} 
         AS imagingstudy_codeableconcept_bodysite
         ON imagingstudy."series_bodySite_code" = imagingstudy_codeableconcept_bodysite."code_dicom"
-    LEFT JOIN
+    FULL JOIN
         instances_array
-        ON imagingstudy."id_series" = instances_array."id_series"
+        ON imagingstudy."id_series"::VARCHAR = instances_array."id_series"::VARCHAR
 ), -- creation of the json object of the series attribute for each instance 
 
 series_array AS (
@@ -332,7 +334,7 @@ imagingstudy AS (
                 'reference', fhir_ref(
                     'Patient',
                     '"osiris_master_tab_Patient"',
-                    "subject"
+                    "subject"::varchar
                 )
             ),
             'started', "started",
@@ -379,3 +381,4 @@ imagingstudy AS (
 SELECT *
 FROM
     imagingstudy
+ORDER BY id
