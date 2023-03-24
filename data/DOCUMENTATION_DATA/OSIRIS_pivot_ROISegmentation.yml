@@ -1,0 +1,23 @@
+version: 2
+seeds:
+  - name: OSIRIS_pivot_ROISegmentation
+    description: OSIRIS_pivot_ROISegmentation available at https://github.com/siric-osiris/OSIRIS/blob/MED-OSIRIS/pivot/OSIRIS_pivot_ROISegmentation.csv
+    columns:
+      - name: Instance_Id
+        description: Primary Key
+      - name: Patient_Id
+        description: Foreign Key from OSIRIS_pivot_Patient
+      - name: Series_Ref
+        description: Foreign Key from OSIRIS_pivot_Series
+      - name: ROISegmentation_ROIDescription
+        description: "User-defined description for the ROI"
+      - name: ROISegmentation_ROINumber
+        description: "Unique identifier of the region of interest identifier (ROI)"
+      - name: ROISegmentation_ReferencedSOPInstanceUID
+        description: "Unique identifier of the DICOM object"
+      - name: ROISegmentation_ROIType
+        description: "Type of ROI (e.g. RTStruct, binary mask)"
+      - name: ROISegmentation_ROIFilename
+        description: "Uniquely identifies the referenced identifier or file name"
+      - name: ROISegmentation_ROIName
+        description: "User-defined description for the ROI"

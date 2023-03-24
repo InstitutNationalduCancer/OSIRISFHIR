@@ -1,0 +1,13 @@
+version: 2
+seeds:
+  - name: OSIRIS_pivot_ModalityAndTechniqueRT
+    description: OSIRIS_pivot_ModalityAndTechniqueRT available at https://github.com/siric-osiris/OSIRIS/blob/MED-OSIRIS/pivot/OSIRIS_pivot_ModalityAndTechniqueRT.csv
+    columns:
+      - name: Instance_Id
+        description: Primary Key
+      - name: ModalityAndTechnique_Modality
+        description: "Modality of the radiotherapy procedure. Dicom Tag (300A,00C6)"
+      - name: ModalityAndTechnique_TreatmentMachinePlanned
+        description: "Name of the processing machine used for the emission of the beam. Dicom Tag (300A,00B2)"
+      - name: ModalityAndTechnique_Technique
+        description: "Technique of the radiotherapy procedure. Dicom Tag (300A,0009)"

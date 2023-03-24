@@ -1,0 +1,25 @@
+version: 2
+seeds:
+  - name: OSIRIS_pivot_RadiomicsImageFilter
+    description: OSIRIS_pivot_RadiomicsImageFilter available at https://github.com/siric-osiris/OSIRIS/blob/MED-OSIRIS/pivot/OSIRIS_pivot_RadiomicsImageFilter.csv
+    columns:
+      - name: Instance_Id
+        description: Primary Key
+      - name: Patient_Id
+        description: Foreign Key from OSIRIS_pivot_Patient
+      - name: Series_Ref
+        description: Foreign Key from OSIRIS_pivot_Series
+      - name: RadiomicsImageFilter_SoftwareName
+        description: "Name of the software used"
+      - name: RadiomicsImageFilter_SoftwareVersion
+        description: "Name of the version used"
+      - name: RadiomicsImageFilter_FilterMethod
+        description: "Method of image filter: Mean Filter|Laplacian of Gaussian|Laws Kernels|Gabor|Wavelets|Riesz|Simoncelli"
+      - name: RadiomicsImageFilter_FilterType
+        description: "Type of image filter: Bicubic spline|Tricubic spline|Lagrangian polynomial"
+      - name: RadiomicsImageFilter_FilterInterpolation
+        description: "Type of filter interpolation: Slice-wise (2D)|Volume (3D)"
+      - name: RadiomicsImageFilter_IntensityRounding
+        description: "Field to describe the fractional Hounsfield units rounded to integer values after interpolation"
+      - name: RadiomicsImageFilter_BoundaryCondition
+        description: "Limit condition: zero padding|mirror padding|periodic padding|Constant Value Padding|Nearest Value Padding"

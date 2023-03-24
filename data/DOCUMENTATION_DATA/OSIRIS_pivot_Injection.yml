@@ -1,0 +1,24 @@
+version: 2
+seeds:
+  - name: OSIRIS_pivot_Injection
+    description: OSIRIS_pivot_Injection available at https://github.com/siric-osiris/OSIRIS/blob/MED-OSIRIS/pivot/OSIRIS_pivot_Injection.csv
+    columns:
+      - name: Instance_Id
+        description: Primary Key
+      - name: Patient_Id
+        description: Foreign Key from OSIRIS_pivot_Patient
+      - name: Series_Ref
+        description: Foreign Key from OSIRIS_pivot_Series
+      - name: Injection_ContrastBolusStartTime
+        description: "Start of the injection for contrast agents"
+      - name: Injection_ContrastBolusStopTime
+        description: "End of the injection for contrast agents."
+      - name: Injection_RadionuclideTotalDose
+        description: "Radiopharmaceutical dose administered to the patient, measured in megabecquerels (Mbq) at the time the radiopharmaceutical treatment was started."
+      - name: Injection_RadiopharmaceuticalStartTime
+        description: "Actual injection time for radiopharmaceutical. Actual time of administration of the radiopharmaceutical to the patient for imaging purposes."
+      - name: Injection_Radiopharmaceutical
+        description: "Name of the radiopharmaceutical"
+      - name: Injection_ContrastBolusAgent
+        description: "Name of the contrast agent"
+       

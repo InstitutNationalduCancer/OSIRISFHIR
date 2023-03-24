@@ -1,0 +1,31 @@
+version: 2
+seeds:
+  - name: OSIRIS_pivot_Series
+    description: OSIRIS_pivot_Series available at https://github.com/siric-osiris/OSIRIS/blob/MED-OSIRIS/pivot/OSIRIS_pivot_Series.csv
+    columns:
+      - name: Instance_Id
+        description: Primary Key
+      - name: Patient_Id
+        description: Foreign Key from OSIRIS_pivot_Patient
+      - name: Equipment_Ref
+        description: Foreign Key from OSIRIS_pivot_Equipment
+      - name: Study_Ref
+        description: Foreign Key from OSIRIS_pivot_Study
+      - name: Series_SeriesNumber
+        description: "User number to identify the series"
+      - name: Series_SeriesInstanceUID
+        description: "Unique referenced number"
+      - name: Series_Modality
+        description: "Type of equipment used to acquire data for the series"
+      - name: Series_AcquisitionDate
+        description: "Date and time of acquisition"
+      - name: Series_Description
+        description: "Description of the series"
+      - name: Series_BodyPartExamined
+        description: "Part of the body examined"
+      - name: Series_NbSeriesRelatedInstances
+        description: "Number of images in the series"
+      - name: Series_PatientWeight
+        description: "Patient weight in kilograms"
+      - name: Series_PatientSize
+        description: "Patient height in meters"

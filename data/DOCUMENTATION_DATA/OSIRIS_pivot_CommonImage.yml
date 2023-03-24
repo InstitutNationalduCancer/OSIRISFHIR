@@ -1,0 +1,24 @@
+version: 2
+seeds:
+  - name: OSIRIS_pivot_CommonImage
+    description: OSIRIS_pivot_CommonImage available at https://github.com/siric-osiris/OSIRIS/blob/MED-OSIRIS/pivot/OSIRIS_pivot_CommonImage.csv
+    columns:
+      - name: Instance_Id
+        description: Primary Key
+      - name: Series_Ref
+        description: Foreign Key from OSIRIS_pivot_Series
+      - name: Patient_Id
+        description: Foreign Key from OSIRIS_pivot_Patient
+      - name: CommonImage_SOPInstanceUID
+        description: "Unique number to identify the image"
+      - name: CommonImage_PixelSpacing
+        description: "Physical distance between the centers of each two-dimensional pixel, specified by two numerical values"
+      - name: CommonImage_SliceThickness
+        description: "Thickness of the slice in mm"
+      - name: CommonImage_FieldOfView
+        description: "The field of view (FOV) is defined as the dimensions of the exact anatomical region included in a scan in mm"
+      - name: CommonImage_Columns
+        description: "Number of pixels in the column direction of the reconstructed matrix"
+      - name: CommonImage_Rows
+        description: "Number of pixels in the row direction of the reconstructed matrix"
+      

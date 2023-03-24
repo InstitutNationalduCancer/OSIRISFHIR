@@ -1,0 +1,18 @@
+version: 2
+
+seeds:
+  - name: OSIRIS_pivot_Analysis
+    description: OSIRIS_pivot_Analysis available at https://github.com/siric-osiris/OSIRIS/blob/MED-OSIRIS/pivot/OSIRIS_pivot_Analysis.csv
+    columns: 
+      - name: Instance_Id
+        description: Instance Id
+      - name: Patient_Id
+        description: Foreign Key from OSIRIS_pivot_Patient
+      - name: TumorPathologyEvent_Ref
+        description: Foreign Key from OSIRIS_pivot_TumorPathologyEvent
+      - name: "Analysis_Type"
+        description: Type(s) of confirmatory diagnostic or investigative method(s) used
+      - name: "Analysis_Code"
+        description: Analysis identifier
+      - name: "Analysis_Date"
+        description: Date on which the analysis was done.

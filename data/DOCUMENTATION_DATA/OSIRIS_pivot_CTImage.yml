@@ -1,0 +1,23 @@
+version: 2
+seeds:
+  - name: OSIRIS_pivot_CTImage
+    description: OSIRIS_pivot_CTImage available at https://github.com/siric-osiris/OSIRIS/blob/MED-OSIRIS/pivot/OSIRIS_pivot_CTImage.csv
+    columns:
+      - name: Instance_Id
+        description: Primary Key
+      - name: Patient_Id
+        description: Foreign Key from OSIRIS_pivot_Patient
+      - name: CommonImage_Ref
+        description: Foreign Key from OSIRIS_pivot_CommonImage
+      - name: CTImage_ExposureTime
+        description: "X-ray exposure time in ms"
+      - name: CTImage_SpiralPitchFactor
+        description: "Ratio between the table feed per rotation and the total width of the collimation"
+      - name: CTImage_XRayTubeCurrent
+        description: "X-ray tube current in mA"
+      - name: CTImage_FilterType
+        description: "Filter type"
+      - name: CTImage_ConvolutionKernel
+        description: "A label describing the convolution kernel or algorithm used to recontruct the data"
+      - name: CTImage_KVp
+        description: "Peak kilovoltage of the voltage produced by the X-ray generator"
