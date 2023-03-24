@@ -1,0 +1,29 @@
+version: 2
+seeds:
+  - name: OSIRIS_pivot_BiologicalSample
+    description: OSIRIS_pivot_BiologicalSample available at https://github.com/siric-osiris/OSIRIS/blob/MED-OSIRIS/pivot/OSIRIS_pivot_BiologicalSample.csv
+    columns:
+      - name: Instance_Id
+        description: Primary Key
+      - name: Patient_Id
+        description: Foreign Key from OSIRIS_pivot_Patient
+      - name: TumorPathologyEvent_Ref
+        description: Foreign Key from OSIRIS_pivot_TumorPathologyEvent
+      - name: Consent_Ref
+        description: Foreign Key from OSIRIS_pivot_Consent
+      - name: BiologicalSample_ExternalAccession
+        description: "Unique identifier of the sample within the health center (barcode, text identifier)."
+      - name: BiologicalSample_ParentExternalAccession
+        description: "Unique identifier of the parent sample (barcode, text identifier). For example, an aliquot or a sample extracted from another sample (e.g. histological number)."
+      - name: BiologicalSample_CollectDate
+        description: "The date of sample collection."
+      - name: BiologicalSample_TopographyCode
+        description: "Anatomical location of the tumor specimen according to the International Classification of Diseases for Oncology."
+      - name: BiologicalSample_Nature
+        description: "Information indicating the nature of the sample."
+      - name: BiologicalSample_Origin
+        description: "Allows you to indicate the origin of the sample."
+      - name: BiologicalSample_StorageTemperature
+        description: "The storage temperature of the sample."
+      - name: BiologicalSample_TumorCellularity
+        description: "The percentage of tumor cells quantified in the tumor sample."

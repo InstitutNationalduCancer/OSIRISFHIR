@@ -1,0 +1,21 @@
+version: 2
+seeds:
+  - name: OSIRIS_pivot_DXImage
+    description: OSIRIS_pivot_DXImage available at https://github.com/siric-osiris/OSIRIS/blob/MED-OSIRIS/pivot/OSIRIS_pivot_DXImage.csv
+    columns:
+      - name: Instance_Id
+        description: Primary Key
+      - name: Patient_Id
+        description: Foreign Key from OSIRIS_pivot_Patient
+      - name: CommonImage_Ref
+        description: Foreign Key from OSIRIS_pivot_CommonImage
+      - name: DXImage_Exposure
+        description: "The exposure expressed in mAs, for example calculated from the exposure time and the X-ray tube current"
+      - name: DXImage_KVP
+        description: "Peak kilovoltage of the voltage produced by the X-ray generator"
+      - name: DXImage_PatientOrientation
+        description: "Patient orientation"
+      - name: DXImage_ExposureTime
+        description: "Duration of X-Ray exposure in ms"
+      - name: DXImage_ImageLaterality
+        description: "Examination of the laterality of the body part examined"

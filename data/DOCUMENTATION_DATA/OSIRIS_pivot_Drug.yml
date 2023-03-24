@@ -1,0 +1,15 @@
+version: 2
+seeds:
+  - name: OSIRIS_pivot_Drug
+    description: OSIRIS_pivot_Patient available at https://github.com/siric-osiris/OSIRIS/blob/MED-OSIRIS/pivot/OSIRIS_pivot_Drug.csv
+    columns:
+      - name: Instance_Id
+        description: Primary Key 
+      - name: Patient_Id
+        description: Foreign Key from OSIRIS_pivot_Patient
+      - name: Treatment_Ref
+        description: Foreign Key from OSIRIS_pivot_Treatment
+      - name: Drug_Code
+        description: Classification code Anatomical Therapeutic Chemical (ACT) code, indicating the 5th level (chemical substance) if possible.
+      - name: Drug_Name
+        description: Name of the molecule administered.

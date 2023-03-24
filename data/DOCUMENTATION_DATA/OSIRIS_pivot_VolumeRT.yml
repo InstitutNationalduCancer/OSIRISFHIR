@@ -1,0 +1,15 @@
+version: 2
+seeds:
+  - name: OSIRIS_pivot_VolumeRT
+    description: OSIRIS_pivot_VolumeRT available at https://github.com/siric-osiris/OSIRIS/blob/MED-OSIRIS/pivot/OSIRIS_pivot_VolumeRT.csv
+    columns:
+      - name: Instance_Id
+        description: Primary Key
+      - name: 'Volume_LocationQualifier '
+        description: Various modifiers that can be applied to body locations where radiotherapy treatments can be directed
+      - name: 'Volume_Description '
+        description: Description of the radiotherapy volume that may contain any additional information in addition to SNOMED codes
+      - name: Volume_Identifier
+        description: Identification number of the prescription volume. Dicom Tag (3006,0022) or Dicom Tag (300A,000B)
+      - name: Volume_Location
+        description: Codes describing the body locations where radiotherapy treatments can be directed. They should be extracted from MOSAIQ/ARIA Record and Verify

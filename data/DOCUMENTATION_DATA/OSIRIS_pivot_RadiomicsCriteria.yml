@@ -1,0 +1,45 @@
+version: 2
+seeds:
+  - name: OSIRIS_pivot_RadiomicsCriteria
+    description: OSIRIS_pivot_RadiomicsCriteria available at https://github.com/siric-osiris/OSIRIS/blob/MED-OSIRIS/pivot/OSIRIS_pivot_RadiomicsCriteria.csv
+    columns:
+      - name: Instance_Id
+        description: Primary Key
+      - name: Patient_Id
+        description: Foreign Key from OSIRIS_pivot_Patient
+      - name: ROISegmentation_Ref
+        description: Foreign Key from OSIRIS_pivot_ROISegmentation
+      - name: RadiomicsImageFilter_Ref
+        description: Foreign Key from OSIRIS_pivot_RadiomicsImageFilter
+      - name: RadiomicsCriteria_SoftwareName
+        description: Name of the software used to calculate the biomarkers image (IBSI 61)
+      - name: RadiomicsCriteria_SoftwareVersion
+        description: Version of the software used to calculate the biomarkers image (IBSI 61)
+      - name: RadiomicsCriteria_ComputationalLocalisationMethod
+        description: "Location of the the method of calculation : LOCAL || GLOBAL"
+      - name: RadiomicsCriteria_CalculationWindowMatrix
+        description: Matrix of the calculation window (ex. 5x5x5 voxels)
+      - name: RadiomicsCriteria_UsedImageFilter
+        description: Method used to filter the images before calculation
+      - name: RadiomicsCriteria_UsedImageFilterParameters
+        description: Parameters of the method used to filter the images before the calculation
+      - name: RadiomicsCriteria_DistanceWeighted
+        description: Define how CM, RLM, NGTDM and NGLDM weight the distances, for example no weighting (IBSI 63)
+      - name: RadiomicsCriteria_DiscretisationMethod
+        description: "Resampling intensity method: FBS || FBN (IBSI 56a)"
+      - name: RadiomicsCriteria_Bound
+        description: Bounds in intensity to perform the discretization
+      - name: RadiomicsCriteria_BinSize
+        description: Number of bins (FBN), size of bins (FBS) for discretization (IBSI 56b)
+      - name: RadiomicsCriteria_LowestIntensity
+        description: Lowest intensity of the first bin for the FBS discretization (IBSI 56c)
+      - name: RadiomicsCriteria_BiggestIntensity
+        description: Biggest intensity of the last bin for the FBS discretization (IBSI 56c)
+      - name: RadiomicsCriteria_BoundsRangeOfValueAfterDiscretisation
+        description: Bounds of the intensity value after discretization
+      - name: RadiomicsCriteria_SpatialResamplingMethod
+        description: "Spatial resampling method: Bicubic spline|Tricubic spline|Lagrangian polynomial"
+      - name: RadiomicsCriteria_SpatialResamplingValues
+        description: "Spatial resampling values: x, y, z"
+      - name: RadiomicsCriteria_TextureMatrixAggregation
+        description: Define how texture matrix-based biomarkers were calculated from the underlying texture matrices (IBSI 62)
