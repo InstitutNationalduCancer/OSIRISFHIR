@@ -1,0 +1,29 @@
+version: 2
+models:
+  - name: osiris_clean_ctimage_ImagingStudy
+    description: Mapping of OSIRIS_pivot_CTImage data to fhir path
+    columns:
+      - name: id_ctimage
+        description: Mapping of Patient_Id+Instance_Id (Primary Key)
+        tests:
+          - dbt_constraints.primary_key
+      - name: commonimage
+        description: Mapping of Patient_Id+CommonImage_Ref (Foreign Key from osiris_clean_commonimage_ImagingStudy)
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_commonimage_ImagingStudy')
+              pk_column_name: id_commonimage
+      - name: series_extension_ctimage_kvp
+        description: Mapping of CTImage_KVp
+      - name: series_extension_ctimage_xray_tube_current
+        description: Mapping of CTImage_XRayTubeCurrent
+      - name: series_extension_ctimage_exposure_time
+        description: Mapping of CTImage_ExposureTime
+      - name: series_extension_ctimage_spiral_pitch_factor
+        description: Mapping of CTImage_SpiralPitchFactor
+      - name: series_extension_ctimage_filter_type
+        description: Mapping of CTImage_FilterType
+      - name: series_extension_ctimage_convolution_kernel
+        description: Mapping of CTImage_ConvolutionKernel
+      - name: subject
+        description: Mapping of Patient_Id

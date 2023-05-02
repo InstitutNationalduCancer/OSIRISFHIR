@@ -1,0 +1,15 @@
+version: 2
+models:
+  - name: osiris_master_tab_Device
+    description: The master_tab models make it possible to transform the tabular OSIRIS model into a FHIR OSIRIS model
+    columns:
+      - name: id_device
+        description: Primary Key
+        tests:
+          - dbt_constraints.primary_key
+      - name: deviceName_name
+        description: Mapping of Equipment_ModelName
+      - name: manufacturer
+        description: Mapping of Equipment_Manufacturer
+      - name: version
+        description: Mapping of Equipment_SoftwareVersion

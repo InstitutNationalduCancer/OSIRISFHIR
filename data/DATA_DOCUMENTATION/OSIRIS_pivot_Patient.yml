@@ -1,0 +1,28 @@
+version: 2
+
+seeds:
+  - name: OSIRIS_pivot_Patient
+    description: OSIRIS_pivot_Patient available at https://github.com/siric-osiris/OSIRIS/blob/MED-OSIRIS/pivot/OSIRIS_pivot_Patient.csv
+    columns: 
+      - name: Instance_Id
+        description: Instance Id
+      - name: "Patient_Id"
+        description: Anonymized local identifier of the patient in the hospital.
+      - name: "Patient_Gender"
+        description: Sex of the patient
+      - name: "Patient_Ethnicity"
+        description: EthnicThe patient's ethnicity.ity
+      - name: "Patient_BirthDate"
+        description: "The patient's date of birth as recorded on the birth certificate. Date (indicating the 15th day of the month of birth for anonymization)"
+      - name: "Patient_DeathDate"
+        description: Deathdat"Date of patient's death. Date (indicating the 15th day of the month of death for anonymization)."e
+      - name: "Patient_ProviderCenterId"
+        description: "The FINESS identifier of the center providing the clinical data for the OSIRIS project."
+      - name: "Patient_OriginCenterId"
+        description: "The identifier according to the Fichier National des Etablissements Sanitaires et Sociaux (FINESS) of the health center that took care of the patient."
+      - name: "Patient_CauseOfDeath"
+        description: "The patient's primary cause of death."
+      - name: "Patient_LastNewsDate"
+        description: Date of patient's last visit.
+      - name: "Patient_LastNewsStatus"
+        description: The patient's health status at his/her last visit.

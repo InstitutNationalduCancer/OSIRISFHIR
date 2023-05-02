@@ -1,0 +1,11 @@
+version: 2
+models:
+  - name: osiris_master_tab_Medication
+    description: The master_tab models make it possible to transform the tabular OSIRIS model into a FHIR OSIRIS model
+    columns:
+      - name: id_medication
+        description: Primary Key
+        tests:
+          - dbt_constraints.primary_key
+      - name: code_text
+        description: Mapping of Injection_ContrastBolusAgent and Injection_Radiopharmaceutical

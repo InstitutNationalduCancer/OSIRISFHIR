@@ -1,0 +1,24 @@
+version: 2
+models:
+  - name: osiris_master_tab_Device_sequencingDevice
+    description: The master_tab models make it possible to transform the tabular OSIRIS model into a FHIR OSIRIS model
+    columns:
+      - name: id_sequencingdevice
+        description: Mapping of Patient_Id+Instance_Id
+        tests:
+          - dbt_constraints.primary_key
+      - name: type
+        description: Mapping of Technology_PlatformName
+        tests: 
+          -  not_null
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Device_codeableconcept')
+              pk_column_name: code
+      - name: device_identifier
+        description: Mapping of Technology_PlatformAccession
+      - name: device_version_type_coding
+        description: Mapping of Panel_Name
+        tests: 
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Device_codeableconcept')
+              pk_column_name: code

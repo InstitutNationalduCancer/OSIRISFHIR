@@ -1,0 +1,25 @@
+version: 2
+models:
+  - name: osiris_master_tab_VerificationResult_verificationResult
+    columns:
+      - name: id_verificationresult
+        description: Mapping of Patient_Id+Instance_Id (with source) (Primary Key)
+      - name: target
+        description: Mapping of Patient_Id+Instance_Id (with source) 
+        tests:
+          - not_null
+        # No test for foreign key because they are 4 tables (one for each type of alteration) 
+      - name: validationType_coding
+        quote: true
+        description: Mapping of Validation_Type
+        tests:
+          - not_null
+          - dbt_constraints.foreign_key:
+                pk_table_name: ref('osiris_master_tab_VerificationResult_codeableconcept')
+                pk_column_name: code
+      - name: validationProcess_text
+        description: Mapping of Validation_Method
+      - name: status
+        description: Mapping of Validation_Status
+        tests:
+          - not_null

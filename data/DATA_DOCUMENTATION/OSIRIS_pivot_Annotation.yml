@@ -1,0 +1,54 @@
+version: 2
+
+seeds:
+  - name: OSIRIS_pivot_Annotation
+    description: OSIRIS_pivot_Annotation available at https://github.com/siric-osiris/OSIRIS/blob/MED-OSIRIS/pivot/OSIRIS_pivot_Annotation.csv
+    columns:
+      - name: Patient_Id
+        description: Foreign Key from OSIRIS_pivot_Patient
+      - name: Instance_Id
+        description: Primary Key
+      - name: Alteration_Ref
+        description: Foreign Key from ?
+      - name: AlterationOnSample_AlterationType
+        description: "The OSIRIS code of the type of genetic alteration."
+      - name: GenomeEntity_Type
+        description: "OSIRIS code of the molecular entity where the genomic alteration is found."
+      - name: GenomeEntity_Database
+        description: "The database used to precisely name the molecular entity."
+      - name: GenomeEntity_Id
+        description: "The identifier of the molecular entity in the database."
+      - name: GenomeEntity_Symbol
+        description: "Gene symbol following the HUGO (Human Genome Organisation) nomenclature"
+      - name: Annotation_ReferenceType
+        description: "Type of the annotation referenced to describe the molecular entity"
+      - name: Annotation_ReferenceDatabase
+        description: "Reference database name"
+      - name: Annotation_ReferenceValue
+        description: "Identifier of the annotation in the database"
+      - name: Annotation_MutationPredictionAlgorithm
+        description: "The name of the software used to predict the impact of the alteration on the protein."
+      - name: Annotation_MutationPredictionValue
+        description: "Confidence score given by the software."
+      - name: Annotation_MutationPredictionScore
+        description: "Prediction of the variation effect over the protein"
+      - name: Annotation_PfamDomain
+        description: "Name of the protein domain in the Pfam database containing the genetic alteration."
+      - name: Annotation_PfamId
+        description: "Identifier in the database of protein families and protein domains (Pfam) containing the genetic alteration."
+      - name: Annotation_DNARegionName
+        description: "Name of the functional region of the gene containing the genetic alteration (example: exon 3)."
+      - name: Annotation_DNASequenceVariation
+        description: "If the genetic alteration is located on a coding region of the gene, the incidence on this region is indicated according to the HGVS (Human Genome Variation Society) nomenclature. (example: c.12G>A)."
+      - name: Annotation_AminoAcidChange
+        description: "Incidence of genetic alteration according to the HGVS (Human Genome Variation Society) nomenclature. (example: p.Arg2322Cys)"
+      - name: Annotation_GenomicSequenceVariation
+        description: "Incidence of genetic alteration according to the HGVS (Human Genome Variation Society) nomenclature. (example: g.289G>A)"
+      - name: Annotation_RNASequenceVariation
+        description: "Incidence of genetic alteration according to the HGVS (Human Genome Variation Society) nomenclature. (example: r.67g>u)"
+      - name: Annotation_AminoAcidChangeType
+        description: "Nomenclature of changes at protein-level"
+      - name: Annotation_FusionPrimeEnd
+        description: Location in the case of a fusion
+      - name: Annotation_Strand
+        description: "Strand orientation of the annotation DNA"

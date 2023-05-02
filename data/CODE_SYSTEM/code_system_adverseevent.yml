@@ -1,0 +1,14 @@
+version: 2
+seeds:
+  - name: code_system_adverseevent
+    description: The sources of the valueset are file:///Users/Maelle/Git/arkhn-ig-osiris/output/ValueSet-AdverseEventCode.html and file:///Users/Maelle/Git/arkhn-ig-osiris/output/ValueSet-AdverseEventGrade.html
+    columns:
+      - name: code
+        description: Code in the system code used
+      - name: version
+        description: Version of the system code
+      - name: display
+        description: Display of the code
+      - name: code_system
+        description: System code from which the code is derived
+        

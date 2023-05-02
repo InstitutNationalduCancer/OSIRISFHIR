@@ -1,0 +1,15 @@
+version: 2
+seeds:
+  - name: OSIRIS_pivot_ResponseEvaluation
+    description: OSIRIS_pivot_RadiomicsImageFilter available at https://github.com/siric-osiris/OSIRIS/blob/MED-OSIRIS/pivot/OSIRIS_pivot_ResponseEvaluation.csv
+    columns:
+      - name: Patient_Id
+        description: Foreign Key from OSIRIS_pivot_Patient
+      - name: Instance_Id
+        description: Primary Key
+      - name: Treatment_Ref
+        description: Foreign Key from OSIRIS_pivot_Treatment
+      - name: Date
+        description: Date of assessement of treatment response
+      - name: Status
+        description: Treatment response evaluation status

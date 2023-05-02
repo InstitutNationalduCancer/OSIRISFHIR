@@ -1,0 +1,11 @@
+version: 2
+models:
+  - name: osiris_fhir_VerificationResult_verificationResult
+    description: Create the VerificationResult profil from VerificationResult resource (osiris_master_tab_VerificationResult_verificationResult)
+    columns:
+      - name: "id"
+        description: Id
+        tests:
+          - dbt_constraints.primary_key
+      - name: "fhir"
+        description: Fhir format of the instance

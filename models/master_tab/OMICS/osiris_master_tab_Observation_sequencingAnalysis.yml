@@ -1,0 +1,72 @@
+version: 2
+models:
+  - name: osiris_master_tab_Observation_sequencingAnalysis
+    description: The master_tab models make it possible to transform the tabular OSIRIS model into a FHIR OSIRIS model
+    columns:
+      - name: id_sequencinganalysis
+        description: Mapping of Patient_Id+Instance_Id
+        tests:
+          - dbt_constraints.primary_key
+      - name: "subject"
+        description: Foreign Key from osiris_master_tab_Patient
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Patient')
+              pk_column_name: id_patient
+      - name: focus
+        description: Mapping of Patient_Id+TumorPathologyEvent_Ref
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Condition_tumorPathologyEvent')
+              pk_column_name: id_condition
+              severity: warn
+      - name: specimen
+        description: Mapping of Patient_Id+BiologicalSample_Ref
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Specimen_specimen')
+              pk_column_name: id_specimen
+      - name: device
+        description: Foreign Key from osiris_master_tab_Device_sequencingDevice
+        tests:
+          - not_null
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Device_sequencingDevice')
+              pk_column_name: id_sequencingdevice
+      - name: category_text
+        description: Mapping of Analysis_Code
+      - name: code_coding_code
+        description: Mapping of Analysis_Type
+        tests:
+          - not_null
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Observation_codeableConcept')
+              pk_column_name: code
+      - name: effectiveDateTime
+        quote: true
+        description: Mapping of effectiveDateTime
+        tests:
+          - not_null
+      - name: method
+        description: Mapping of Technology_TechnicalProtocol
+        tests:
+          - not_null
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Observation_codeableConcept')
+              pk_column_name: code
+      - name: component_date_of_experiment
+        description: Mapping of Technology_DateOfExperiment
+      - name: component_analytic_pipeline_code
+        description: Mapping of AnalysisProcess_AnalyticPipelineCode
+        tests:
+          - not_null
+      - name: component_algorithmic_cellularity
+        description: Mapping of OmicAnalysis_AlgorithmicCellularity
+      - name: component_algorithmic_ploidy
+        description: Mapping of OmicAnalysis_AlgorithmicPloidy
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Observation_codeableConcept')
+              pk_column_name: code
+      - name: component_number_of_breakpoints
+        description: Mapping of OmicAnalysis_NumberOfBreakPoints

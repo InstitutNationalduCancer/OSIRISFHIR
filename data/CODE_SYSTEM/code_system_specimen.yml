@@ -1,0 +1,12 @@
+version: 2
+seeds:
+  - name: code_system_specimen
+    description: The sources of the valueset are https://build.fhir.org/ig/arkhn/arkhn-ig-osiris/ValueSet-BiologicalSampleNature.html, 
+     https://build.fhir.org/ig/arkhn/arkhn-ig-osiris/ValueSet/Topography, https://build.fhir.org/ig/arkhn/arkhn-ig-osiris/ValueSet-StorageTemperature.html, htts://build.fhir.org/ig/arkhn/arkhn-ig-osiris/ValueSet/BiologicalSampleOrigin
+    columns:
+      - name: code
+        description: Code in the system code used
+      - name: display
+        description: Display of the code
+      - name: code_system
+        description: System code from which the code is derived

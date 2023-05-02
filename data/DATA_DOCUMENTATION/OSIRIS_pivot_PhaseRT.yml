@@ -1,0 +1,19 @@
+version: 2
+seeds:
+  - name: OSIRIS_pivot_PhaseRT
+    description: OSIRIS_pivot_PhaseRT available at https://github.com/siric-osiris/OSIRIS/blob/MED-OSIRIS/pivot/OSIRIS_pivot_PhaseRT.csv
+    columns:
+      - name: Instance_Id
+        description: Primary Key
+      - name: Patient_Id
+        description: Foreign Key from OSIRIS_pivot_Patient
+      - name: CourseRT_Ref
+        description: Foreign Key from OSIRIS_pivot_CourseRT
+      - name: Phase_Type
+        description: Type (planned or delivered)
+      - name: Phase_NumberOfFractions
+        description: Number of Fractions. If delivred, it should be extracted from MOSAIQ/ARIA Record and Verify
+      - name: Phase_StartDate
+        description: Start date and time. They should be extracted from MOSAIQ/ARIA Record and Verify
+      - name: Phase_EndDate
+        description: End date and time. They should be extracted from MOSAIQ/ARIA Record and Verify

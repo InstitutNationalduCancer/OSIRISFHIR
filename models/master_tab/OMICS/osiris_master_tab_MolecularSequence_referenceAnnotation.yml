@@ -1,0 +1,37 @@
+version: 2
+models:
+  - name: osiris_master_tab_MolecularSequence_referenceAnnotation
+    description: The master_tab models make it possible to transform the tabular OSIRIS model into a FHIR OSIRIS model
+    columns:
+      - name: "id_referenceannotation"
+        description: Mapping of Patient_Id+Instance_Id (Primary Key)
+        tests:
+          - dbt_constraints.primary_key
+      - name: subject
+        description: Mapping of Patient_Id (Foreign Key from osiris_master_tab_Patient)
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Patient')
+              pk_column_name: id_patient
+      - name: referenceseq_orientation
+        description: Mapping of Annotation_Strand
+      - name: referenceseq_referenceseqid
+        description: Mapping of Annotation_ReferenceType
+        tests:
+          - not_null
+          - dbt_constraints.foreign_key:
+                pk_table_name: ref('osiris_master_tab_MolecularSequence_codeableconcept')
+                pk_column_name: code
+                severity: warn
+      - name: repository_reference_db_name
+        description: Mapping of Annotation_ReferenceDatabase
+        tests:
+          - not_null
+      - name: repository_reference_db_datasetid
+        description: Mapping of Annotation_ReferenceValue
+        tests:
+          - not_null
+      - name: repository_pfam_domain_readsetid
+        description: Mapping of Annotation_PfamDomain
+      - name: repository_pfam_domain_datasetid
+        description: Mapping of Annotation_PfamId

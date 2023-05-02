@@ -1,0 +1,35 @@
+version: 2
+models:
+  - name: osiris_clean_adverseevent_AdverseEvent
+    description: Mapping of OSIRIS_pivot_Analysis data to fhir path
+    columns:
+      - name: id_adverseevent
+        description: Mapping of Patient_Id+Instance_Id
+        tests:
+          - dbt_constraints.primary_key
+      - name: subject
+        description: Mapping of Patient_Id
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_patient_Patient')
+              pk_column_name: id_patient
+      - name: suspectentity_instance
+        description: Mapping of Patient_Id+Treatment_Ref
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_treatment_CarePlan')
+              pk_column_name: id_treatment
+      - name: subjectmedicalhistory
+        description: Mapping of Patient_Id+TumorPathologyEvent_Ref
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_tpe_Condition')
+              pk_column_name: id_condition
+      - name: event
+        description: Mapping of AdverseEvent_Code
+      - name: date
+        description: Mapping of AdverseEvent_Date
+      - name: extension_enddate
+        description: Mapping of AdverseEvent_EndDate
+      - name: seriousness_coding_code
+        description: Mapping of AdverseEvent_Grade

@@ -1,0 +1,74 @@
+version: 2
+models:
+  - name: osiris_master_tab_Variant_VariantAnnotation
+    description: The master_tab models make it possible to transform the tabular OSIRIS model into a FHIR OSIRIS model
+    columns:
+      - name: id_annotation
+        description: Mapping of Patient_Id+Instance_Id (Primary Key)
+        tests:
+          - dbt_constraints.primary_key
+      - name: id_referenceannotation
+        description: Mapping of Patient_Id+Instance_Id (Foreign Key from osiris_master_tab_MolecularSequence_referenceAnnotation)
+        tests:
+          - not_null
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_MolecularSequence_referenceAnnotation')
+              pk_column_name: id_referenceannotation
+      - name: id_genomeentity
+        description: Mapping of Patient_Id+Instance_Id (Foreign Key from osiris_master_tab_MolecularSequence_genomeEntity)
+        tests:
+          - not_null
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_MolecularSequence_genomeEntity')
+              pk_column_name: id_genomeentity
+      - name: alteration
+        description: Mapping of component_dna_chg_type (Foreign Key from osiris_master_tab_Variant_snp)
+        tests:
+          - not_null
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Variant_snp')
+              pk_column_name: id_variant
+              severity: warn
+      - name: subject
+        description: Mapping of Patient_Id (Foreign Key from osiris_master_tab_Patient)
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Patient')
+              pk_column_name: id_patient
+      - name: component_dna_chg_type
+        description: Mapping of AlterationOnSample_AlterationType
+        tests:
+          - not_null
+          - dbt_constraints.foreign_key:
+                pk_table_name: ref('osiris_master_tab_Variant_codeableconcept')
+                pk_column_name: code
+      - name: component_gene_studied
+        description: Mapping of AlterationOnSample_AlterationType
+      - name: component_mutation_prediction_software
+        description: Mapping of Annotation_MutationPredictionAlgorithm
+        tests:
+          - dbt_constraints.foreign_key:
+                pk_table_name: ref('osiris_master_tab_Variant_codeableconcept')
+                pk_column_name: code
+      - name: component_mutation_prediction_evidence_value
+        description: Mapping of Annotation_MutationPredictionValue
+      - name: component_mutation_prediction_score
+        description: Mapping of Annotation_MutationPredictionScore
+      - name: component_cytogenetic_location
+        description: Mapping of Annotation_DNARegionName
+      - name: component_dna_chg
+        description: Mapping of Annotation_DNASequenceVariation
+      - name: component_amino_acid_chg
+        description: Mapping of Annotation_AminoAcidChange
+      - name: component_genomic_dna_chg
+        description: Mapping of Annotation_GenomicSequenceVariation
+      - name: component_rna_chg
+        description: Mapping of Annotation_RNASequenceVariation
+      - name: component_amino_acid_chg_type
+        description: Mapping of Annotation_AminoAcidChangeType
+        tests:
+          - dbt_constraints.foreign_key:
+                pk_table_name: ref('osiris_master_tab_Variant_codeableconcept')
+                pk_column_name: code
+      - name: derived_fusion_molecular_sequences
+        description: Mapping of Annotation_FusionPrimeEnd

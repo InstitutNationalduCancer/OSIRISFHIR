@@ -1,0 +1,43 @@
+version: 2
+models:
+  - name: osiris_clean_biologicalsample_Specimen
+    description: Mapping of OSIRIS_pivot_BiologicalSample data to fhir path
+    columns:
+      - name: id_specimen
+        description: Mapping of Patient_Id+BiologicalSample_ExternalAccession
+        tests:
+          - dbt_constraints.primary_key
+      - name: subject
+        description: Mapping of Patient_Id
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_patient_Patient')
+              pk_column_name: id_patient
+      - name: extension_basedoncondition
+        description: Mapping of Patient_Id+TumorPathologyEvent_Ref
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_tpe_Condition')
+              pk_column_name: id_condition
+      - name: specimen_provision_data_reference
+        description: Mapping of Patient_Id+Consent_Ref
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_consent_Consent')
+              pk_column_name: id_consent
+      - name: identifier
+        description: Mapping of BiologicalSample_ExternalAccession
+      - name: parent
+        description: Mapping of BiologicalSample_ParentExternalAccession
+      - name: collection_collectedDateTime
+        description: Mapping of BiologicalSample_CollectDate
+      - name: collection_bodySite
+        description: Mapping of BiologicalSample_TopographyCode
+      - name: type
+        description: Mapping of BiologicalSample_Nature
+      - name: extension_biologicalsampleorigine
+        description: Mapping of BiologicalSample_Origin
+      - name: condition_storage_temperature
+        description: Mapping of BiologicalSample_StorageTemperature
+      - name: collection_quantity_value
+        description: Mapping of BiologicalSample_TumorCellularity

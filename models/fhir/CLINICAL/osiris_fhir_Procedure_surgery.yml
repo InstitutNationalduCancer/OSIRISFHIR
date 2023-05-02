@@ -1,0 +1,6 @@
+version: 2
+models:
+  - name: osiris_fhir_Procedure_surgery
+    columns:
+      - name: id
+      - name: fhir

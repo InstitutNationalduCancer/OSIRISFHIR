@@ -1,0 +1,11 @@
+version: 2
+models:
+  - name: osiris_fhir_AdverseEvent_oncoAdverseEvent
+    description: Create the OncoAdverseEvent profil from AdverseEvent resource (osiris_master_tab_AdverseEvent_oncoAdverseEvent)
+    columns:
+      - name: "id"
+        description: Id
+        tests:
+          - dbt_constraints.primary_key
+      - name: "fhir"
+        description: Fhir format of the instance

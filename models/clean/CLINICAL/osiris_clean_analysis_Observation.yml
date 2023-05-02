@@ -1,0 +1,51 @@
+version: 2
+models:
+  - name: osiris_clean_analysis_Observation
+    description: Mapping of OSIRIS_pivot_Analysis data to fhir path
+    columns:
+      - name: "id_observation"
+        description: Mapping of Patient_Id+Instance_Id (Primary Key)
+        tests:
+          - dbt_constraints.primary_key
+      - name: "subject"
+        description: Mapping of Patient_id (Foreign Key from osiris_clean_patient_Patient)
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_patient_Patient')
+              pk_column_name: id_patient
+      - name: "focus"
+        description: Mapping of Patient_Id+TumorPathologyEvent_Ref (Foreign Key from osiris_clean_tpe_Condition)
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_tpe_Condition')
+              pk_column_name: id_condition
+      - name: specimen
+        description: Mapping of Patient_Id+Analysis_BiologicalSample_Ref
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_biologicalsample_Specimen')
+              pk_column_name: id_specimen
+      - name: "code_coding_code"
+        description: Mapping of Analysis_Type
+      - name: "effectiveDateTime"
+        description: Mapping of effectiveDateTime
+      - name: category_text
+        description: Mapping of Analysis_Code
+      - name: component_algorithmic_cellularity
+        description: Mapping of OmicAnalysis_AlgorithmicCellularity
+      - name: component_date_of_experiment
+        description: Mapping of Technology_DateOfExperiment
+      - name: component_analytic_pipeline_code
+        description: Mapping of AnalysisProcess_AnalyticPipelineCode
+      - name: device_identifier
+        description: Mapping of Technology_PlatformAccession
+      - name: device
+        description: Mapping of Technology_PlatformName
+      - name: component_algorithmic_ploidy
+        description: Mapping of OmicAnalysis_AlgorithmicPloidy
+      - name: component_number_of_breakpoints
+        description: Mapping of OmicAnalysis_NumberOfBreakPoints
+      - name: device_version_type_coding
+        description: Mapping of Panel_Name
+      - name: method
+        description: Mapping of Technology_TechnicalProtocol

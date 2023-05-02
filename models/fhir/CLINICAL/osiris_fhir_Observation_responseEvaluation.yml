@@ -1,0 +1,11 @@
+version: 2
+models:
+  - name: osiris_fhir_Observation_responseEvaluation
+    description: Create the responseEvaluation profil from Observation resource (osiris_master_tab_Observation_responseEvaluation)
+    columns:
+      - name: "id"
+        description: Id
+        tests:
+          - dbt_constraints.primary_key
+      - name: "fhir"
+        description: Fhir format of the instance

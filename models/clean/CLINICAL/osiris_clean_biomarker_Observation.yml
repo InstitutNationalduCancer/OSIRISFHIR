@@ -1,0 +1,27 @@
+version: 2
+models:
+  - name: osiris_clean_biomarker_Observation
+    description: Mapping of OSIRIS_pivot_Biomarker data to fhir path
+    columns:
+      - name: id_biomarker
+        description: Mapping of Patient_Id+Instance_Id
+        tests:
+          - dbt_constraints.primary_key
+      - name: subject
+        description: Mapping of Patient_Id
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_patient_Patient')
+              pk_column_name: id_patient
+      - name: derivedfrom
+        description: Mapping of Patient_Id+Analysis_Ref
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_analysis_Observation')
+              pk_column_name: id_observation
+      - name: code
+        description: Mapping of Biomarker_Code 
+      - name: value
+        description: Mapping of Biomarker_Value
+      - name: value_unit
+        description: Mapping of Biomarker_Unit

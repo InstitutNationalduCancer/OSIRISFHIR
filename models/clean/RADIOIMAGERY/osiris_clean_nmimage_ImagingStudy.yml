@@ -1,0 +1,23 @@
+version: 2
+models:
+  - name: osiris_clean_nmimage_ImagingStudy
+    description: Mapping of OSIRIS_pivot_NMImage data to fhir path
+    columns:
+      - name: id_nmimage
+        description: Mapping of Patient_Id+Instance_Id (Primary Key)
+        tests:
+          - dbt_constraints.primary_key
+      - name: commonimage
+        description: Mapping of Patient_Id+CommonImage_Ref (Foreign Key from osiris_clean_commonimage_ImagingStudy)
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_commonimage_ImagingStudy')
+              pk_column_name: id_commonimage
+      - name: series_extension_nmimage_attenuation_correction_method
+        description: Mapping of NMImage_AttenuationCorrectionMethod
+      - name: series_extension_nmimage_reconstruction_method
+        description: Mapping of NMImage_ReconstructionMethod
+      - name: series_extension_nmimage_scatter_correction_method
+        description: Mapping of NMImage_ScatterCorrectionMethod
+      - name: subject
+        description: Mapping of Patient_Id

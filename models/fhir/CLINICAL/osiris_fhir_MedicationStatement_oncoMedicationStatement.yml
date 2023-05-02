@@ -1,0 +1,11 @@
+version: 2
+models:
+  - name: osiris_fhir_MedicationStatement_oncoMedicationStatement
+    description: Create the OncoMedicationStatement profil from MedicationStatement resource (osiris_master_tab_MedicationStatement_oncoMedicationStatement)
+    columns:
+      - name: "id"
+        description: Id
+        tests:
+          - dbt_constraints.primary_key
+      - name: "fhir"
+        description: Fhir format of the instance

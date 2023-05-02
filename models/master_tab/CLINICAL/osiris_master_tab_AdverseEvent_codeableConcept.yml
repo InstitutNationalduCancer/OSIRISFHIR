@@ -1,0 +1,15 @@
+version: 2
+models:
+  - name: osiris_master_tab_AdverseEvent_codeableConcept
+    description: The master_tab models make it possible to transform the tabular OSIRIS model into a FHIR OSIRIS model
+    columns:
+      - name: code_system
+        description: System code from which the code is derived
+      - name: version
+        description: Version of the system code
+      - name: code
+        description: Code in the system code used
+        tests:
+          - dbt_constraints.primary_key
+      - name: display
+        description: Display of the code

@@ -1,0 +1,33 @@
+version: 2
+models:
+  - name: osiris_clean_injection_MedicationAdministration
+    description: "Mapping of OSIRIS_pivot_Injection data to fhir path"
+    columns:
+      - name: "id_medication_administration"
+        description: "Mapping of Patient_Id+Instance_Id (primary key)"
+        tests:
+          - dbt_constraints.primary_key
+      - name: series
+        description: Mapping of Patient_Id+Series_Ref (Foreign Key fron osiris_clean_series_ImagingStudy)
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_series_ImagingStudy')
+              pk_column_name: id_series
+      - name: "subject"
+        description: "Mapping of Patient_Id (Foreign Key from osiris_clean_patient_Patient)"
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_patient_Patient')
+              pk_column_name: id_patient
+      - name: "medication"
+        description: "Mapping of Injection_Radiopharmaceutical and Injection_ContrastBolusAgent (Foreign Key from osiris_clean_injection_Medication)"
+      - name: "effectivePeriod_start"
+        description: "Mapping of Injection_ContrastBolusStartTime"
+      - name: "effectivePeriod_end"
+        description: "Mapping of Injection_ContrastBolusStopTime"
+      - name: "effectiveDateTime"
+        description: "Mapping of Injection_RadiopharmaceuticalStartTime"
+      - name: "dosage_dose"
+        description: "Mapping of Injection_RadionuclideTotalDose"
+
+      

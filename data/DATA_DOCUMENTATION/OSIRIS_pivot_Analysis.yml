@@ -1,0 +1,38 @@
+version: 2
+
+seeds:
+  - name: OSIRIS_pivot_Analysis
+    description: OSIRIS_pivot_Analysis available at https://github.com/siric-osiris/OSIRIS/blob/MED-OSIRIS/pivot/OSIRIS_pivot_Analysis.csv
+    columns: 
+      - name: Instance_Id
+        description: Primary Key
+      - name: Patient_Id
+        description: Foreign Key from OSIRIS_pivot_Patient
+      - name: TumorPathologyEvent_Ref
+        description: Foreign Key from OSIRIS_pivot_TumorPathologyEvent
+      - name: BiologicalSample_Ref
+        description: Foreign Key from OSIRIS_pivot_BiologicalSample
+      - name: "Analysis_Type"
+        description: Type(s) of confirmatory diagnostic or investigative method(s) used
+      - name: "Analysis_Code"
+        description: Analysis identifier
+      - name: "Analysis_Date"
+        description: Date on which the analysis was done.
+      - name: Technology_TechnicalProtocol
+        description: "OSIRIS code of the molecular analysis method used."
+      - name: Technology_PlatformName
+        description: Name of the technology used to implement the analysis method.
+      - name: Technology_PlatformAccession
+        description: Accession number of the molecular analysis method in the GEO (Gene Expression Omnibus) database
+      - name: Technology_DateOfExperiment
+        description: Date on which the experiment was carried out
+      - name: Panel_Name
+        description: "In the case of targeted sequencing, the name of the gene panel used."
+      - name: AnalysisProcess_AnalyticPipelineCode
+        description: The name of the software used to analyze the molecular data from the analysis technology. It can be the name of an ad hoc bioinformatics analysis chain or a commercial software.
+      - name: OmicAnalysis_AlgorithmicCellularity
+        description: Percentage of tumor cells in the tissue sample.
+      - name: OmicAnalysis_AlgorithmicPloidy
+        description: The number of complete copies of chromosome sets.
+      - name: OmicAnalysis_NumberOfBreakPoints
+        description: The number of breakpoints resulting from chromosomal rearrangements.

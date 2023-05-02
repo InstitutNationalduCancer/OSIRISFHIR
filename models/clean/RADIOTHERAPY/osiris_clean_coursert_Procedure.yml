@@ -1,0 +1,33 @@
+version: 2
+models:
+  - name: osiris_clean_coursert_Procedure
+    description: Mapping of OSIRIS_pivot_CourseRT data to fhir path
+    columns:
+      - name: id_coursert
+        description: Mapping of Patient_Id+Instance_Id
+        tests:
+          - dbt_constraints.primary_key
+      - name: subject
+        description: Mapping of Patient_Id
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_patient_Patient')
+              pk_column_name: id_patient
+      - name: basedon
+        description: Mapping of Patient_Id+Treatment_Ref
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_treatment_CarePlan')
+              pk_column_name: id_treatment
+      - name: category_coding_code
+        description: Mapping of Course_Type
+      - name: extension_treatmentIntent
+        description: Mapping of Course_TreatmentIntent
+      - name: extension_treatmentTerminationReason
+        description: Mapping of Course_TerminationReason
+      - name: extension_numberOfSessions
+        description: Mapping of Course_NumberOfSessions
+      - name: performedPeriod_start
+        description: Mapping of Course_StartDate
+      - name: performedPeriod_end
+        description: Mapping of Course_EndDate

@@ -1,0 +1,11 @@
+version: 2
+models:
+  - name: osiris_fhir_Device_sequencingDevice
+    description: Create the SequencingDevice profil from Device resource (osiris_master_tab_Observation_sequencingDevice)
+    columns:
+      - name: "id"
+        description: Id
+        tests:
+          - dbt_constraints.primary_key
+      - name: "fhir"
+        description: Fhir format of the instance

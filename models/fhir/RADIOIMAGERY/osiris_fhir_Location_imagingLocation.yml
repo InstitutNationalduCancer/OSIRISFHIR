@@ -1,0 +1,11 @@
+version: 2
+models:
+  - name: osiris_fhir_Location_imagingLocation
+    description: Create the ImagingLocation profil from Location resource (osiris_master_tab_Location)
+    columns:
+      - name: "id"
+        description: Id
+        tests:
+          - dbt_constraints.primary_key
+      - name: "fhir"
+        description: Fhir format of the instance

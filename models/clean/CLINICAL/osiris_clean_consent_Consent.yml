@@ -1,0 +1,19 @@
+version: 2
+models:
+  - name: osiris_clean_consent_Consent
+    description: Mapping of OSIRIS_pivot_Consent data to fhir path
+    columns:
+      - name: id_consent
+        description: Mapping of Patient_Id+Instance_Id
+        tests:
+          - dbt_constraints.primary_key
+      - name: patient
+        description: Mapping of Patient_Id
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_patient_Patient')
+              pk_column_name: id_patient
+      - name: dateTime
+        description: Mapping of Consent_Date
+      - name: provision_type
+        description: Mapping of Consent_GeneticAnalysisAuthorization

@@ -1,0 +1,29 @@
+version: 2
+models:
+  - name: osiris_master_tab_Procedure_surgery
+    columns:
+      - name: id_surgery
+        description: Mapping of Patient_Id+Instance_Id
+        tests:
+          - dbt_constraints.primary_key
+      - name: treatment
+        description: Mapping of Patient_Id+Treatment_Ref
+        tests:
+          - dbt_constraints.foreign_key:
+                pk_table_name: ref('osiris_master_tab_CarePlan')
+                pk_column_name: id_careplan
+      - name: subject
+        description: Foreign Key from osiris_master_tab_Patient
+        tests:
+          - not_null
+          - dbt_constraints.foreign_key:
+                pk_table_name: ref('osiris_master_tab_Patient')
+                pk_column_name: id_patient
+      - name: category
+        description: Mapping of Treatment_SurgeryNature
+      - name: outcome
+        description: Mapping of Treatment_SurgeryResectionQuality
+        tests: 
+          - dbt_constraints.foreign_key:
+                pk_table_name: ref('osiris_master_tab_Procedure_codeableConcept')
+                pk_column_name: code

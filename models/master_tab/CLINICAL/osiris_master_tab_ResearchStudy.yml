@@ -1,0 +1,11 @@
+version: 2
+models:
+  - name: osiris_master_tab_ResearchStudy
+    description: The master_tab models make it possible to transform the tabular OSIRIS model into a FHIR OSIRIS model
+    columns:
+      - name: identifier_value
+        description: Mapping of Treatment_ClinicalTrialId Primary Key)
+        tests:
+          - dbt_constraints.primary_key
+      - name: title
+        description: Mapping of Treatment_ClinicalTrialName

@@ -1,0 +1,21 @@
+version: 2
+seeds:
+  - name: OSIRIS_pivot_AdverseEvent
+    description: OSIRIS_pivot_AdverseEvent available at https://github.com/siric-osiris/OSIRIS/blob/MED-OSIRIS/pivot/OSIRIS_pivot_AdverseEvent.csv
+    columns:
+      - name: Instance_Id
+        description: Primary Key
+      - name: Patient_Id
+        description: Foreign Key from OSIRIS_pivot_Patient
+      - name: Treatment_Ref
+        description: Foreign Key from OSIRIS_pivot_Treatment
+      - name: TumorPathologyEvent_Ref
+        description: Foreign Key from OSIRIS_pivot_TumorPathologyEvent
+      - name: AdverseEvent_Code
+        description: "The international MedDRA code (version 12.0) is used to describe the Adverse Event (AE) occurring during treatment."
+      - name: AdverseEvent_Date
+        description: "Date of diagnosis of the adverse event."
+      - name: AdverseEvent_EndDate
+        description: "End date of the adverse event"
+      - name: AdverseEvent_Grade
+        description: "The Common Terminology Criteria For Adverse Events (CTCAE version 5.0) grade is used to define the severity of the AE."

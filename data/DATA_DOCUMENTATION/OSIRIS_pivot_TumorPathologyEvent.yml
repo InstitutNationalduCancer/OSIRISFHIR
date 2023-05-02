@@ -1,0 +1,28 @@
+version: 2
+
+seeds:
+  - name: OSIRIS_pivot_TumorPathologyEvent
+    description: OSIRIS_pivot_TumorPathologyEvent available at https://github.com/siric-osiris/OSIRIS/blob/MED-OSIRIS/pivot/OSIRIS_pivot_TumorPathologyEvent.csv
+    columns: 
+      - name: Instance_Id
+        description: The primary key for TumorPathologyEvent
+      - name: "TumorPathologyEvent_ParentRef"
+        description: "Parent tumor event (Foreign Key from OSIRIS_pivot_TumorPathologyEvent)"
+      - name: "TumorPathologyEvent_Laterality"
+        description: "Laterality of location"
+      - name: "TumorPathologyEvent_Type"
+        description: "Type of tumor event"
+      - name: "TumorPathologyEvent_TopographyCode"
+        description: Code topographic
+      - name: "Patient_Id"
+        description: "Subject with the tumor (Foreign Key from OSIRIS_pivot_Patient)"
+      - name: "TumorPathologyEvent_StartDate"
+        description: Start Date of the tumor
+      - name: "TumorPathologyEvent_DiagnosisDate"
+        description: Diagnosis Date of the tumor
+      - name: "TumorPathologyEvent_MorphologyCode"
+        description: Histological/ morphological code
+      - name: "TumorPathologyEvent_HistologicalGradeType"
+        description: The classification system used to define the grade of the tumor (breast, prostate are given here as examples).
+      - name: "TumorPathologyEvent_HistologicalGradeValue"
+        description: The value of the histological grade according to the classification system used.

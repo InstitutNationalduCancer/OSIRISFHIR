@@ -1,0 +1,42 @@
+version: 2
+models:
+  - name: osiris_master_tab_CarePlan
+    description: The master_tab models make it possible to transform the tabular OSIRIS model into a FHIR OSIRIS model
+    columns:
+      - name: id_careplan
+        description: Mapping of Patient_Id+Instance_Id
+        tests:
+          - dbt_constraints.primary_key
+      - name: "subject"
+        description: Mapping of Patient_Id
+        tests:
+          - not_null
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Patient')
+              pk_column_name: id_patient
+      - name: "activity_detail_reasonReference"
+        description: Mapping of Patient_Id+TumorPathologyEvent_Ref
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Condition_tumorPathologyEvent')
+              pk_column_name: id_condition
+              severity: warn
+      - name: "supportingInfo"
+        description: Foreign Key from osiris_master_tab_ResearchStudy
+      - name: category_coding_code
+        description: Mapping of Treatment_Type
+        tests: 
+          - not_null
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_CarePlan_codeableConcept')
+              pk_column_name: code
+              config:
+                severity: warn
+      - name: period_start
+        description: Mapping of Treatment_StartDate
+      - name: period_end
+        description: Mapping of Treatment_EndDate
+      - name: extension_treatment_line
+        description: Mapping of Treatment_LineNumber
+      - name: activity_detail_code
+        description: Mapping of Treatment_ActivityCode

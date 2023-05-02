@@ -1,0 +1,11 @@
+version: 2
+models:
+  - name: osiris_master_tab_Organization
+    description: The master_tab models make it possible to transform the tabular OSIRIS model into a FHIR OSIRIS model
+    columns:
+      - name: identifier_finess_system
+        description: "Fixed value: http://finess.sante.gouv.fr"
+      - name: identifier_finess_value
+        description: Mapping of Patient_ProviderCenterId and/or Patient_OriginCenterId
+        tests:
+          - dbt_constraints.primary_key

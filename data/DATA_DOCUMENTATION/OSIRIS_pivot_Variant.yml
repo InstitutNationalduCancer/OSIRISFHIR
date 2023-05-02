@@ -1,0 +1,51 @@
+version: 2
+seeds:
+  - name: OSIRIS_pivot_Variant
+    description: OSIRIS_pivot_Variant available at https://github.com/siric-osiris/OSIRIS/blob/MED-OSIRIS/pivot/OSIRIS_pivot_Variant.csv
+    columns:
+      - name: Instance_Id
+        description: Primary Key
+      - name: Patient_Id
+        description: Foreign Key from OSIRIS_pivot_Patient
+      - name: Analysis_Ref
+        description: Foreign Key from OSIRIS_pivot_Analysis
+      - name: AlterationOnSample_AlterationType
+        description: Variable not mapped because it would be fixed to OSIRIS:O15-5 (Mutation)
+      - name: AlterationOnSample_Pathogenicity
+        description: Information to indicate the pathogenicity of the genetic alteration. 
+      - name: AlterationOnSample_Actionability
+        description: Can (could) the genetic alteration affect the patient's response to treatment?
+      - name: AlterationOnSample_ProposedForOrientation
+        description: Was the genetic alteration used to guide the patient's therapeutic choice?
+      - name: Alteration_Chromosome
+        description: Chromosomal localization.
+      - name: Alteration_GenomicStart
+        description: Starting position of the genetic alteration on the chromosome.
+      - name: Alteration_GenomicStop
+        description: End position of the genetic alteration on the chromosome.
+      - name: Alteration_GenomeBuild
+        description: The version of the reference genome used for the reconstruction of the tumor genome.
+      - name: Alteration_Cytoband
+        description: Location on the cytogenetic map.
+      - name: Variant_ReferenceAllele
+        description: The allele seen on the forward strand of the reference genome.
+      - name: Variant_AlternativeAllele
+        description: The allele resulting from a somatic mutation event during tumorigenesis.
+      - name: Variant_DNASequenceVariationType
+        description: The type of mutation.
+      - name: VariantInSample_PositionReadDepth
+        description: Number of 'reads' at the genomic position of the mutation.
+      - name: VariantInSample_VariantReadDepth
+        description: Number of reads containing the alternative allele at position.
+      - name: VariantInSample_StrandBias
+        description: Is there a DNA strand bias?
+      - name: VariantInSample_GenomicSourceClass
+        description: Cell type where the mutation occurs.
+      - name: VariantInSample_AllelicState
+        description: Zygotia of the mutation.
+      - name: Validation_Type
+        description: "Validation method used."
+      - name: Validation_Method
+        description: "Allows you to indicate a validation method (example: bibliographic)"
+      - name: Validation_Status
+        description: Allows to indicate if the alteration has been validated or not by the validation method.

@@ -1,0 +1,60 @@
+version: 2
+models:
+  - name: osiris_master_tab_Specimen_specimen
+    description: The master_tab models make it possible to transform the tabular OSIRIS model into a FHIR OSIRIS model
+    columns:
+      - name: id_specimen
+        description: Mapping of Patient_Id+BiologicalSample_ExternalAccession
+        tests:
+          - dbt_constraints.primary_key
+      - name: subject
+        description: Mapping of Patient_Id
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Patient')
+              pk_column_name: id_patient
+      - name: extension_basedoncondition
+        description: Mapping of Patient_Id+TumorPathologyEvent_Ref
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Condition_tumorPathologyEvent')
+              pk_column_name: id_condition
+              severity: warn
+      - name: specimen_provision_data_reference
+        description: Mapping of Consent_Ref
+      - name: identifier
+        description: Mapping of BiologicalSample_ExternalAccession
+      - name: parent
+        description: Mapping of BiologicalSample_ParentExternalAccession
+      - name: collection_collectedDateTime
+        description: Mapping of BiologicalSample_CollectDate
+      - name: collection_bodySite
+        quote: true
+        description: Mapping of BiologicalSample_TopographyCode
+        tests: 
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Specimen_codeableConcept')
+              pk_column_name: code
+      - name: type
+        description: Mapping of BiologicalSample_Nature
+        tests: 
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Specimen_codeableConcept')
+              pk_column_name: code
+              config:
+                severity: warn
+      - name: extension_biologicalsampleorigine
+        description: Mapping of BiologicalSample_Origin
+        tests: 
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Specimen_codeableConcept')
+              pk_column_name: code
+      - name: condition_storage_temperature
+        description: Mapping of BiologicalSample_StorageTemperature
+        tests: 
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Specimen_codeableConcept')
+              pk_column_name: code
+              severity: warn
+      - name: collection_quantity_value
+        description: Mapping of BiologicalSample_TumorCellularity

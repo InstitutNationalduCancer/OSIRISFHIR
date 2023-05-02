@@ -1,0 +1,11 @@
+version: 2
+models:
+  - name: osiris_fhir_Consent_consent
+    description: Create the Consent profil from Consent resource (osiris_master_tab_Consent_consent)
+    columns:
+      - name: "id"
+        description: Id
+        tests:
+          - dbt_constraints.primary_key
+      - name: "fhir"
+        description: Fhir format of the instance

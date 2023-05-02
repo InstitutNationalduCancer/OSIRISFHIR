@@ -1,0 +1,37 @@
+version: 2
+models:
+  - name: osiris_master_tab_Observation_analysis
+    description: The master_tab models make it possible to transform the tabular OSIRIS model into a FHIR OSIRIS model
+    columns:
+      - name: "id_observation"
+        description: Mapping of Patient_Id+Instance_Id
+        tests:
+          - dbt_constraints.primary_key
+      - name: "subject"
+        description: Mapping of Patient_Id+
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Patient')
+              pk_column_name: id_patient
+      - name: "focus"
+        description: Mapping of Patient_Id+TumorPathologyEvent_Ref
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Condition_tumorPathologyEvent')
+              pk_column_name: id_condition
+              severity: warn
+      - name: code_coding_code
+        description: Mapping of Analysis_Type
+        tests: 
+          - not_null
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Observation_codeableConcept')
+              pk_column_name: code
+      - name: effectiveDateTime
+        quote: true
+        description: Mapping of effectiveDateTime
+        tests: 
+          - not_null
+      - name: category_text
+        description: Mapping of Analysis_Code
+

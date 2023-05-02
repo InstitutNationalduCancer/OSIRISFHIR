@@ -1,0 +1,49 @@
+version: 2
+models:
+  - name: osiris_master_tab_AdverseEvent_oncoAdverseEvent
+    description: The master_tab models make it possible to transform the tabular OSIRIS model into a FHIR OSIRIS model
+    columns:
+      - name: id_adverseevent
+        description: Mapping of Patient_Id+Instance_Id
+        tests:
+          - dbt_constraints.primary_key
+      - name: subject
+        description: Mapping of Patient_Id
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Patient')
+              pk_column_name: id_patient
+      - name: suspectentity_instance
+        description: Mapping of Patient_Id+Treatment_Ref
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_CarePlan')
+              pk_column_name: id_careplan
+      - name: subjectmedicalhistory
+        description: Mapping of Patient_Id+TumorPathologyEvent_Ref
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Condition_tumorPathologyEvent')
+              pk_column_name: id_condition
+      - name: event
+        description: Mapping of AdverseEvent_Code
+        tests: 
+          - not_null
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_AdverseEvent_codeableConcept')
+              pk_column_name: code
+              config: 
+                severity: warn
+      - name: date
+        description: Mapping of AdverseEvent_Date
+        tests: 
+          - not_null
+      - name: extension_enddate
+        description: Mapping of AdverseEvent_EndDate
+      - name: seriousness_coding_code
+        description: Mapping of AdverseEvent_Grade
+        tests: 
+          - not_null
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_AdverseEvent_codeableConcept')
+              pk_column_name: code

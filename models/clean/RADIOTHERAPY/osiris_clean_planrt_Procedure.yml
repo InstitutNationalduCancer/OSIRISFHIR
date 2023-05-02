@@ -1,0 +1,59 @@
+version: 2
+models:
+  - name: osiris_clean_planrt_Procedure
+    description: Mapping of OSIRIS_pivot_PlanRT data to fhir path
+    columns:
+      - name: id_planrt
+        description: Mapping of Patient_Id+Instance_Id
+        tests:
+          - dbt_constraints.primary_key
+      - name: subject
+        description: Mapping of Patient_Id
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_patient_Patient')
+              pk_column_name: id_patient
+      - name: partof
+        description: Mapping of Patient_Id+PhaseRT_Ref
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_phasert_Procedure')
+              pk_column_name: id_phasert
+      - name: modalityandtechnique
+        description: Mapping of ModalityAndTechnique_Ref
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_modalityandtechniquert_Procedure')
+              pk_column_name: id_modality_technique
+      - name: category_coding_code
+        description: Mapping of Plan_Type
+      - name: extension_numberOfFractions
+        description: Mapping of Plan_NumberOfFractions
+      - name: performedPeriod_start
+        description: Mapping of Plan_StartDate
+      - name: performedPeriod_end
+        description: Mapping of Plan_EndDate
+      - name: extension_reasonReplanification
+        description: Mapping of Plan_ReasonReplanification
+      - name: extension_AlgorithName
+        description: Mapping of Plan_AlgorithmName
+      - name: extension_basedon_seriesuid
+        description: Mapping of Series_Ref
+        # tests:
+        #   - dbt_constraints.foreign_key:
+        #       pk_table_name: ref('osiris_clean_series_ImagingStudy')
+        #       pk_column_name: id_series
+      - name: extension_basedon_rtstructuid
+        description: Mapping of ROISegmentation_Ref
+        # tests:
+        #   - dbt_constraints.foreign_key:
+        #       pk_table_name: ref('osiris_clean_roisegmentation_Observation')
+        #       pk_column_name: id_roisegmentation
+      - name: extension_dosetovolume_rtdoseuid
+        description: Mapping of Plan_RtDoseUID
+        # tests:
+        #   - dbt_constraints.foreign_key:
+        #       pk_table_name: ref('osiris_clean_dosetovolumert_Procedure')
+        #       pk_column_name: id_dosetovolume
+      - name: identifier_value
+        description: Mapping of Plan_RtPlanUID

@@ -1,0 +1,29 @@
+version: 2
+models:
+  - name: osiris_master_tab_MedicationAdministration
+    description: The master_tab models make it possible to transform the tabular OSIRIS model into a FHIR OSIRIS model
+    columns:
+      - name: id_medication_administration
+        description: Mapping of Patient_Id+Instance_Id
+        tests:
+          - dbt_constraints.primary_key
+      - name: "subject"
+        description: Mapping of Patient_Id
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Patient')
+              pk_column_name: id_patient
+      - name: "medication"
+        description: Foreign Key from osiris_master_tab_Medication
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Medication')
+              pk_column_name: id_medication
+      - name: effectivePeriod_end
+        description: Mapping of Injection_ContrastBolusStopTime
+      - name: dosage_dose
+        description: Mapping of Injection_RadionuclideTotalDose
+      - name: effectiveDateTime
+        description: Mapping of Injection_RadiopharmaceuticalStartTime
+      - name: effectivePeriod_start
+        description: Mapping of Injection_ContrastBolusStartTime

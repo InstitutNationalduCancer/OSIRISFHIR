@@ -1,0 +1,27 @@
+version: 2
+models:
+  - name: osiris_master_tab_Observation_radiomicsfeature
+    description: The master_tab models make it possible to transform the tabular OSIRIS model into a FHIR OSIRIS model
+    columns:
+      - name: id_feature
+        description: Mapping of Patient_Id+Instance_Id (Primary Key)
+        tests:
+          - dbt_constraints.primary_key
+      - name: subject
+        description: Mapping of Subject_Id (Foreign Key from osiris_master_tab_Patient)
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Patient')
+              pk_column_name: id_patient
+      - name: hasmember
+        description: Mapping of Patient_Id+RadiomicsCriteria_Ref (Foreign Key from osiris_master_tab_Observation_radiomicscriteria)
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Observation_radiomicscriteria')
+              pk_column_name: id_criteria
+      - name: code_coding_code
+        description: Mapping of RadiomicsFeature_Id
+      - name: code_coding_text
+        description: Mapping of RadiomicsFeature_Name
+      - name: value
+        description: Mapping of RadiomicsFeature_Value

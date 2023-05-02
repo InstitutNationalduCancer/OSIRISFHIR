@@ -1,0 +1,25 @@
+version: 2
+models:
+  - name: osiris_master_tab_Observation_responseEvaluation
+    columns:
+      - name: id_responseevaluation
+        description: Mapping of Patient_Id+Instance_Id (Primary Key)
+        tests:
+          - dbt_constraints.primary_key
+      - name: subject
+        description: Mapping of Patient_Id (Foreign Key from osiris_master_tab_Patient)
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Patient')
+              pk_column_name: id_patient
+      - name: basedon
+        description: Mapping of Patient_Id+Treatment_Ref (Foreign Key from osiris_master_tab_CarePlan)
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_CarePlan')
+              pk_column_name: id_careplan
+              severity: warn
+      - name: effectiveDateTime
+        description: Mapping of Date
+      - name: valueCodableConcept
+        description: Mapping of Status

@@ -1,0 +1,11 @@
+version: 2
+models:
+  - name: osiris_fhir_MolecularSequence_referenceAnnotation
+    description: Create the ReferenceAnnotation profil from MolecularSequence resource (osiris_master_tab_MolecularSequence_referenceAnnotation)
+    columns:
+      - name: "id"
+        description: Id
+        tests:
+          - dbt_constraints.primary_key
+      - name: "fhir"
+        description: Fhir format of the instance

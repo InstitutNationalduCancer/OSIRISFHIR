@@ -1,0 +1,39 @@
+version: 2
+models:
+  - name: osiris_master_tab_Patient
+    description: The master_tab models make it possible to transform the tabular OSIRIS model into a FHIR OSIRIS model
+    columns:
+      - name: "id_patient"
+        description: Mapping of Patient_Id (Primary Key)
+        tests:
+          - dbt_constraints.primary_key
+      - name: "managingOrganization_valueReference"
+        description: Mapping of Patient_ProviderCenterId (Foreign Key from osiris_master_tab_Organization)
+        tests:
+          - not_null
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Organization')
+              pk_column_name: identifier_finess_value
+      - name: gender
+        description: Mapping of Patient_Gender
+        tests: 
+          - not_null
+          - accepted_values: 
+              values: ['male', 'female', 'other', 'unknown']
+      - name: birthdate
+        description: Mapping of Patient_BirthDate
+        tests: 
+          - not_null
+      - name: deceaseddatetime
+        description: Mapping of Patient_DeathDate
+      - name: extension_ethnicity_valueCodeableConcept_coding_code
+        description: Mapping of Patient_Ethnicity
+      - name: identifier_value
+        description: Mapping of Patient_Id
+      - name: extension_origin_center_valueReference
+        description: Mapping of Patient_OriginCenterId (Foreign Key from osiris_master_tab_Organization)
+        tests:
+          - not_null
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Organization')
+              pk_column_name: identifier_finess_value

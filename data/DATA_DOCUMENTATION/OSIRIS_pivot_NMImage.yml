@@ -1,0 +1,17 @@
+version: 2
+seeds:
+  - name: OSIRIS_pivot_NMImage
+    description: OSIRIS_pivot_NMImage available at https://github.com/siric-osiris/OSIRIS/blob/MED-OSIRIS/pivot/OSIRIS_pivot_NMImage.csv
+    columns:
+      - name: Instance_Id
+        description: Primary Key
+      - name: Patient_Id
+        description: Foreign Key from OSIRIS_pivot_Patient
+      - name: CommonImage_Ref
+        description: Foreign Key from OSIRIS_pivot_CommonImage
+      - name: NMImage_AttenuationCorrectionMethod
+        description: "Attenuation correction method"
+      - name: NMImage_ReconstructionMethod
+        description: "Reconstruction method e.g. 2D filtered back projection, 2D iterative, 3D PROMIS, 3D FAVOR, 3D iterative"
+      - name: NMImage_ScatterCorrectionMethod
+        description: "Scattering correction method. For example, convolution-subtraction, dual energy window, model based, use of attenuation data"

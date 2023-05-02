@@ -1,0 +1,23 @@
+version: 2
+seeds:
+  - name: OSIRIS_pivot_CourseRT
+    description: OSIRIS_pivot_CourseRT available at https://github.com/siric-osiris/OSIRIS/blob/MED-OSIRIS/pivot/OSIRIS_pivot_CourseRT.csv
+    columns:
+      - name: Instance_Id
+        description: Primary Key
+      - name: Patient_Id
+        description: Foreign Key from OSIRIS_pivot_Patient
+      - name: Treatment_Ref
+        description: Foreign Key from OSIRIS_pivot_Treatment
+      - name: Course_Type
+        description: Type (planned or delivered)
+      - name: Course_TreatmentIntent
+        description: A code explaining the objective (eg curative, palliative, preventive therapy) Dicom Tag (3001,000A)
+      - name: Course_TerminationReason
+        description: A code explaining the reason for unplanned or premature end, or normal completion. It should be extracted from MOSAIQ/ARIA Record and Verify
+      - name: Course_NumberOfSessions
+        description: Total number of fractions planned. Summarize from phases
+      - name: Course_StartDate
+        description: Start date and time. They should be extracted from MOSAIQ/ARIA Record and Verify
+      - name: Course_EndDate
+        description: End date and time. They should be extracted from MOSAIQ/ARIA Record and Verify

@@ -1,0 +1,35 @@
+version: 2
+models:
+  - name: osiris_master_tab_Observation_biomarker
+    description: The master_tab models make it possible to transform the tabular OSIRIS model into a FHIR OSIRIS model
+    columns:
+      - name: id_biomarker
+        description: Mapping of Patient_Id+Instance_Id
+        tests:
+          - dbt_constraints.primary_key
+      - name: subject
+        description: Mapping of Patient_Id
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Patient')
+              pk_column_name: id_patient
+      - name: derivedfrom
+        description: Mapping of Patient_Id+Analysis_Ref
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Observation_analysis')
+              pk_column_name: id_observation
+      - name: code
+        description: Mapping of Biomarker_Code
+        tests: 
+          - not_null
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Observation_codeableConcept')
+              pk_column_name: code
+              severity: warn
+      - name: value
+        description: Mapping of Biomarker_Value
+        tests: 
+          - not_null
+      - name: value_unit
+        description: Mapping of Biomarker_Unit

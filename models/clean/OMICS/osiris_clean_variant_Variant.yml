@@ -1,0 +1,59 @@
+version: 2
+models:
+  - name: osiris_clean_variant_Variant
+    description: Mapping of OSIRIS_pivot_Treatment data to fhir path
+    columns:
+      - name: id_variant
+        description: Mapping of Patient_Id+'variant'+Instance_Id (Primary Key)
+        tests:
+          - dbt_constraints.primary_key
+      - name: subject
+        description: Mapping of Patient_Id (Foreign Key from osiris_clean_patient_Patient)
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_patient_Patient')
+              pk_column_name: id_patient
+      - name: derivedfrom_analysis
+        description: Mapping of Patient_Id+Analysis_Ref (Foreign Key from osiris_clean_analysis_Observation)
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_analysis_Observation')
+              pk_column_name: id_observation
+      - name: component_pathogenicity
+        description: Mapping of AlterationOnSample_Pathogenicity
+      - name: component_actionability_valueBoolean
+        description: Mapping of AlterationOnSample_Actionability
+      - name: component_proposed_for_orientation_valueBoolean
+        description: Mapping of AlterationOnSample_ProposedForOrientation
+      - name: component_chromosome_valueCodeableConcept
+        description: Mapping of Alteration_Chromosome
+      - name: component_exact_start_end_valueRange_low
+        description: Mapping of Alteration_GenomicStart
+      - name: component_exact_start_end_valueRange_high
+        description: Mapping of Alteration_GenomicStop
+      - name: component_ref_sequence_assembly_valueCodeableConcept
+        description: Mapping of Alteration_GenomeBuild
+      - name: component_cytogenetic_location_valueCodeableConcept
+        description: Mapping of Alteration_Cytoband
+      - name: component_ref_allele_valueString
+        description: Mapping of Variant_ReferenceAllele
+      - name: component_alt_allele_valueString
+        description: Mapping of Variant_AlternativeAllele
+      - name: component_dna_chg_type_valueCodeableConcept
+        description: Mapping of Variant_DNASequenceVariationType
+      - name: component_allelic_read_depth_valueQuantity
+        description: Mapping of VariantInSample_PositionReadDepth
+      - name: component_variant_read_depth_valueQuantity
+        description: Mapping of VariantInSample_VariantReadDepth
+      - name: extension_strand_biais_valueBoolean
+        description: Mapping of VariantInSample_StrandBias
+      - name: component_genomic_source_class_valueCodeableConcept
+        description: Mapping of VariantInSample_GenomicSourceClass
+      - name: component_allelic_state_valueCodeableConcept
+        description: Mapping of VariantInSample_AllelicState
+      - name: verification_status
+        description: Mapping of Validation_Status
+      - name: validationType_coding
+        description: Mapping of Validation_Type
+      - name: validationProcess_text
+        description: Mapping of Validation_Method

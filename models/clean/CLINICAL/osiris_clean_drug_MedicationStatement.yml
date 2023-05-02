@@ -1,0 +1,23 @@
+version: 2
+models:
+  - name: osiris_clean_drug_MedicationStatement
+    description: Mapping of OSIRIS_pivot_Drug data to fhir path
+    columns:
+      - name: id_oncomedicalstatement
+        description: Mapping of Patient_Id+Instance_Id
+      - name: subject
+        description: Mapping of Patient_Id
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_patient_Patient')
+              pk_column_name: id_patient
+      - name: basedon
+        description: Mapping of Patient_Id+Treatment_Ref
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_treatment_CarePlan')
+              pk_column_name: id_treatment
+      - name: medicationCodeableConcept_coding_code
+        description: Mapping of Drug_Code
+      - name: medicationCodeableConcept_text
+        description: Mapping of Drug_Name

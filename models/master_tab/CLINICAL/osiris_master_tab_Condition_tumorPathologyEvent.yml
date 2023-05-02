@@ -1,0 +1,66 @@
+version: 2
+models:
+  - name: osiris_master_tab_Condition_tumorPathologyEvent
+    description: The master_tab models make it possible to transform the tabular OSIRIS model into a FHIR OSIRIS model
+    columns:
+      - name: id_condition
+        description: Mapping of Patient_Id+Instance_Id
+        tests:
+          - dbt_constraints.primary_key
+      - name: "subject"
+        description: Mapping of Patient_Id
+        tests:
+          - not_null
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Patient')
+              pk_column_name: id_patient
+      - name: extension_due_to_valuereference
+        description: Mapping of Patient_Id+TumorPathologyEvent_ParentRef (Foreign Key from osiris_master_tab_Condition)
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Condition_tumorPathologyEvent')
+              pk_column_name: id_condition
+      - name: code_coding_code
+        description: Mapping of TumorPathologyEvent_Type
+        tests: 
+          - not_null
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Condition_codeableConcept')
+              pk_column_name: code
+      - name: bodySite_coding_code
+        description: Mapping of TumorPathologyEvent_TopographyCode
+      - name: onsetDateTime
+        quote: true
+        description: Mapping of TumorPathologyEvent_StartDate
+        tests: 
+          - not_null
+      - name: recordedDate
+        quote: true
+        description: Mapping of TumorPathologyEvent_DiagnosisDate
+        tests: 
+          - not_null
+      - name: stage_morphology_summary_coding_code
+        description: Mapping of TumorPathologyEvent_MorphologyCode
+        tests: 
+          - not_null
+          - dbt_constraints.foreign_key:
+                pk_table_name: ref('osiris_master_tab_Condition_codeableConcept')
+                pk_column_name: code
+      - name: stage_morphology_type_coding_code
+        description: 'Fixed value: 116676008'
+        tests: 
+          - not_null
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Condition_codeableConcept')
+              pk_column_name: code
+      - name: extension_laterality_valueCodeableConcept_coding_code
+        quote: true
+        description: Mapping of TumorPathologyEvent_Laterality
+        tests: 
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Condition_codeableConcept')
+              pk_column_name: code
+      - name: extension_histology_extension_histologygradetype
+        description: Mapping of TumorPathologyEvent_HistologicalGradeType
+      - name: extension_histology_extension_histologygradevalue
+        description: Mapping of TumorPathologyEvent_HistologicalGradeValue

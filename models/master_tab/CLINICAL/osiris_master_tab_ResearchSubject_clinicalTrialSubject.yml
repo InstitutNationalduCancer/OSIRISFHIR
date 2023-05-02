@@ -1,0 +1,22 @@
+version: 2
+models:
+  - name: osiris_master_tab_ResearchSubject_clinicalTrialSubject
+    columns:
+      - name: id_researchsubject
+        description: Primary Key
+        tests:
+          - dbt_constraints.primary_key
+      - name: individual
+        description: Mapping of Patient_Id
+        tests:
+          - not_null
+          - dbt_constraints.foreign_key:
+                pk_table_name: ref('osiris_master_tab_Patient')
+                pk_column_name: id_patient
+      - name: study
+        description: Foriegn Key from osiris_master_tab_ResearchStudy
+        tests:
+          - not_null
+          - dbt_constraints.foreign_key:
+                pk_table_name: ref('osiris_master_tab_ResearchStudy')
+                pk_column_name: identifier_value

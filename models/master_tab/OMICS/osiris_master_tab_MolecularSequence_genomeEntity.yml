@@ -1,0 +1,30 @@
+version: 2
+models:
+  - name: osiris_master_tab_MolecularSequence_genomeEntity
+    description: The master_tab models make it possible to transform the tabular OSIRIS model into a FHIR OSIRIS model
+    columns:
+      - name: id_genomeentity
+        description: Mapping of Patient_Id+Instance_Id (Primary Key)
+        tests:
+          - dbt_constraints.primary_key
+      - name: subject
+        description: Mapping of Patient_Id (Foreign Key from osiris_master_tab_Patient)
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Patient')
+              pk_column_name: id_patient
+      - name: genome_entity_type
+        description: Mapping of GenomeEntity_Type
+        tests: 
+          - not_null
+          - dbt_constraints.foreign_key:
+                pk_table_name: ref('osiris_master_tab_MolecularSequence_codeableconcept')
+                pk_column_name: code
+      - name: repository_genome_entity_db_name
+        description: Mapping of GenomeEntity_Database
+        tests: 
+          - not_null
+      - name: repository_genome_entity_db_datasetid
+        description: Mapping of GenomeEntity_Id
+        tests: 
+          - not_null

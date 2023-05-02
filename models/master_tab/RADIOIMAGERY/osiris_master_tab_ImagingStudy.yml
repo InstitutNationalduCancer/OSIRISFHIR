@@ -1,0 +1,129 @@
+version: 2
+models:
+  - name: osiris_master_tab_ImagingStudy
+    description: The master_tab models make it possible to transform the tabular OSIRIS model into a FHIR OSIRIS model
+    columns:
+      - name: id_imagingstudy
+        description: Mapping of Patient_Id+Instance_Id
+        tests:
+          - dbt_constraints.primary_key
+      - name: subject
+        description: Mapping of Patient_Id
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Patient')
+              pk_column_name: id_patient
+      - name: id_series
+        description: Series
+      - name: identifier_value
+        description: Mapping of Study_StudyInstanceUID
+      - name: modality
+        description: Mapping of Study_ModalitiesInStudy
+      - name: started
+        description: Mapping of Study_AcquisitionDate
+      - name: id_endpoint
+        description: Mapping of Study_Location (Foreign Key from osiris_master_Endpoint)
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Endpoint')
+              pk_column_name: id_endpoint
+      - name: numberOfSeries
+        description: Mapping of Study_NbStudyRelatedSeries
+      - name: location
+        description: Mapping of Study_InstitutionName (Foreign Key from osiris_master_tab_Location)
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Location')
+              pk_column_name: id_Location
+      - name: reasonReference
+        description: Mapping of Mapping of Patient_Id+Analysis_Ref (Foreign Key from osiris_master_tab_Observation_analysis)
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Observation_analysis')
+              pk_column_name: id_observation
+      - name: description
+        description: Mapping of Study_StudyDescription
+      - name: series_performer_actor
+        description: Mapping of Equipment_Ref (Foreign Key from osiris_clean_equipment_Device)
+      - name: series_number
+        description: Mapping of Series_SeriesNumber
+      - name: series_uid
+        description: Mapping of Series_SeriesInstanceUID
+      - name: series_modality_code
+        description: Mapping of Series_Modality
+      - name: series_started
+        description: Mapping of Series_AcquisitionDate
+      - name: series_description
+        description: Mapping of Series_Description
+      - name: series_bodySite_code
+        description: Mapping of Series_BodyPartExamined
+      - name: series_numberOfInstances
+        description: Mapping of Series_NbSeriesRelatedInstances
+      - name: series_extension_patient_weight
+        description: Mapping of Series_PatientWeight
+      - name: series_extension_patient_height
+        description: Mapping of Series_PatientSize
+      - name: series_instance_uid
+        description: Mapping of CommonImage_SOPInstanceUID
+      - name: series_extension_slice_thickness
+        description: Mapping of CommonImage_SliceThickness
+      - name: series_extension_pixel_spacing
+        description: Mapping of CommonImage_SliceThickness
+      - name: series_extension_field_of_view
+        description: Mapping of CommonImage_FieldOfView
+      - name: series_extension_rows
+        description: Mapping of CommonImage_Rows
+      - name: series_extension_columns
+        description: Mapping of CommonImage_Columns
+      - name: id_medication_administration
+        description: Mapping of Instance_Id (primary key)
+      - name: series_extension_ctimage_kvp
+        description: Mapping of CTImage_KVp
+      - name: series_extension_ctimage_xray_tube_current
+        description: Mapping of CTImage_XRayTubeCurrent
+      - name: series_extension_ctimage_exposure_time
+        description: Mapping of CTImage_ExposureTime
+      - name: series_extension_ctimage_spiral_pitch_factor
+        description: Mapping of CTImage_SpiralPitchFactor
+      - name: series_extension_ctimage_filter_type
+        description: Mapping of CTImage_FilterType
+      - name: series_extension_ctimage_convolution_kernel
+        description: Mapping of CTImage_ConvolutionKernel
+      - name: series_extention_mrimage_sequence_name
+        description: Mapping of MRImage_SequenceName
+      - name: series_extention_mrimage_magnetic_field_strength
+        description: Mapping of MRImage_MagneticFieldStrength
+      - name: series_extention_mrimage_mr_acquisition_type
+        description: Mapping of MRImage_MRAcquisitionType
+      - name: series_extention_mrimage_repetition_time
+        description: Mapping of MRImage_RepetitionTime
+      - name: series_extention_mrimage_echo_time
+        description: Mapping of MRImage_EchoTime
+      - name: series_extention_mrimage_imaging_frequency
+        description: Mapping of MRImage_ImagingFrequency
+      - name: series_extention_mrimage_flip_angle
+        description: Mapping of MRImage_FlipAngle
+      - name: series_extention_mrimage_inversion_time
+        description: Mapping of MRImage_InversionTime
+      - name: series_extention_mrimage_receive_coil_name
+        description: Mapping of MRImage_ReceiveCoilName
+      - name: series_instance_sopClass
+        description: "DICOM class type (Obligatory attribut in fhir model)"
+      - name: series_extension_dximage_exposure_time
+        description: Mapping of DXImage_ExposureTime
+      - name: series_extension_nmimage_scatter_correction_method
+        description: Mapping of NMImage_ScatterCorrectionMethod
+      - name: series_extension_dximage_patient_orientation
+        description: Mapping of DXImage_PatientOrientation
+      - name: series_extension_dximage_kvp
+        description: Mapping of DXImage_KVP
+      - name: series_extension_nmimage_reconstruction_method
+        description: Mapping of NMImage_ReconstructionMethod
+      - name: series_extension_dximage_image_laterality
+        description: Mapping of DXImage_ImageLaterality
+      - name: series_extension_dximage_exposure
+        description: Mapping of DXImage_Exposure
+      - name: series_extension_nmimage_attenuation_correction_method
+        description: Mapping of NMImage_AttenuationCorrectionMethod
+      - name: endpoint
+        description: Mapping of Study_Location

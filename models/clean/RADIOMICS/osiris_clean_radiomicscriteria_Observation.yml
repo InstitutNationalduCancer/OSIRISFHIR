@@ -1,0 +1,59 @@
+version: 2
+models:
+  - name: osiris_clean_radiomicscriteria_Observation
+    description: Mapping of OSIRIS_pivot_Treatment data to fhir path
+    columns:
+      - name: id_criteria
+        description: Mapping of Patient_Id+Instance_Id (Primary Key)
+        tests:
+          - dbt_constraints.primary_key
+      - name: subject
+        description: Mapping of Subject_Id (Foreign Key from osiris_clean_patient_Patient)
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_patient_Patient')
+              pk_column_name: id_patient
+      - name: focus
+        description: Mapping of Patient_Id+ROISegmentation_Ref (Foreign Key from osiris_clean_roisegmentation_Observation)
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_roisegmentation_Observation')
+              pk_column_name: id_roisegmentation
+      - name: hasmember
+        description: Mapping of Patient_Id+RadiomicsImageFilter_Ref (Foreign Key from osiris_clean_radiomicsimagefilter_Observation)
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_radiomicsimagefilter_Observation')
+              pk_column_name: id_imagefilter
+      - name: extension_settings_softwareName_valueString_valueString
+        description: Mapping of RadiomicsCriteria_SoftwareName
+      - name: extension_settings_softwareVersion_valueString_valueString
+        description: Mapping of RadiomicsCriteria_SoftwareVersion
+      - name: extension_settings_localizationMethod_valueString
+        description: Mapping of RadiomicsCriteria_ComputationalLocalisationMethod
+      - name: extension_settings_windowMatrix_valueString
+        description: Mapping of RadiomicsCriteria_CalculationWindowMatrix
+      - name: extension_settings_usedImageFilter_valueString
+        description: Mapping of RadiomicsCriteria_UsedImageFilter
+      - name: extension_settings_usedImageFilterParameters_valueString
+        description: Mapping of RadiomicsCriteria_UsedImageFilterParameters
+      - name: extension_settings_distanceWeighting_valueString_valueString
+        description: Mapping of RadiomicsCriteria_DistanceWeighted
+      - name: extension_settings_discretisationMethod_valueString_valueString
+        description: Mapping of RadiomicsCriteria_DiscretisationMethod
+      - name: extension_settings_bounds_valueString
+        description: Mapping of RadiomicsCriteria_Bound
+      - name: extension_settings_binSize_valueDecimal_valueDecimal
+        description: Mapping of RadiomicsCriteria_BinSize
+      - name: extension_settings_lowestIntensity_valueDecimal_valueDecimal
+        description: Mapping of RadiomicsCriteria_LowestIntensity
+      - name: extension_settings_biggestIntensity_valueDecimal_valueDecimal
+        description: Mapping of RadiomicsCriteria_BiggestIntensity
+      - name: extension_settings_spatialResamplingMethod_valueString
+        description: Mapping of RadiomicsCriteria_SpatialResamplingMethod
+      - name: extension_settings_textureMatrixAggregation_valueString
+        description: Mapping of RadiomicsCriteria_TextureMatrixAggregation"
+      - name: extension_settings_boundsRangeOfValueAfterDiscretisation
+        description: Mapping of RadiomicsCriteria_BoundsRangeOfValueAfterDiscretisation
+      - name: extension_settings_spatialResamplingValues
+        description: Mapping of extension_settings_spatialResamplingValues

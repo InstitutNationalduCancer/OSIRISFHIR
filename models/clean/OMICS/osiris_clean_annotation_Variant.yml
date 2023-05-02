@@ -1,0 +1,58 @@
+version: 2
+models:
+  - name: osiris_clean_annotation_Variant
+    columns:
+      - name: id_annotation
+        description: Mapping of Patient_Id+Instance_Id (Primary Key)
+        tests:
+          - dbt_constraints.primary_key
+      - name: subject
+        description: Mapping of Patient_Id (Foreign Key from osiris_clean_patient_Patient)
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_patient_Patient')
+              pk_column_name: id_patient
+      - name: alteration
+        description: Mapping of Alteration_Ref
+      - name: component_dna_chg_type
+        description: Mapping of AlterationOnSample_AlterationType
+      - name: genome_entity_type
+        description: Mapping of GenomeEntity_Type
+      - name: repository_genome_entity_db_name
+        description: Mapping of GenomeEntity_Database
+      - name: repository_genome_entity_db_datasetid
+        description: Mapping of GenomeEntity_Id
+      - name: component_gene_studied
+        description: Mapping of GenomeEntity_Symbol
+      - name: referenceseq_referenceseqid
+        description: Mapping of Annotation_ReferenceType
+      - name: repository_reference_db_name
+        description: Mapping of Annotation_ReferenceDatabase
+      - name: repository_reference_db_datasetid
+        description: Mapping of Annotation_ReferenceValue
+      - name: component_mutation_prediction_software
+        description: Mapping of Annotation_MutationPredictionAlgorithm
+      - name: component_mutation_prediction_evidence_value
+        description: Mapping of Annotation_MutationPredictionValue
+      - name: component_mutation_prediction_score
+        description: Mapping of Annotation_MutationPredictionScore
+      - name: repository_pfam_domain_readsetid
+        description: Mapping of Annotation_PfamDomain
+      - name: repository_pfam_domain_datasetid
+        description: Mapping of Annotation_PfamId
+      - name: component_cytogenetic_location
+        description: Mapping of Annotation_DNARegionName
+      - name: component_dna_chg
+        description: Mapping of Annotation_DNASequenceVariation
+      - name: component_amino_acid_chg
+        description: Mapping of Annotation_AminoAcidChange
+      - name: component_genomic_dna_chg
+        description: Mapping of Annotation_GenomicSequenceVariation
+      - name: component_rna_chg
+        description: Mapping of Annotation_RNASequenceVariation
+      - name: component_amino_acid_chg_type
+        description: Mapping of Annotation_AminoAcidChangeType
+      - name: derived_fusion_molecular_sequences
+        description: Mapping of Annotation_RNASequenceVariation
+      - name: referenceseq_orientation
+        description: Mapping of Annotation_Strand

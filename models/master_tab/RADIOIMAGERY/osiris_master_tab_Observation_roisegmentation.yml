@@ -1,0 +1,37 @@
+version: 2
+models:
+  - name: osiris_master_tab_Observation_roisegmentation
+    description: The master_tab models make it possible to transform the tabular OSIRIS model into a FHIR OSIRIS model
+    columns:
+      - name: id_roisegmentation
+        description: Mapping of Instance_Id (Primary Key)
+        tests:
+          - dbt_constraints.primary_key
+      - name: id_imagingstudy
+        description: Foreign Key from osiris_master_tab_ImagingStudy
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_ImagingStudy')
+              pk_column_name: id_imagingstudy
+      - name: series
+        description: Mapping of Series_Ref
+      - name: subject
+        description: Mapping of Patient_Id (Foreign Key from osiris_master_tab_Patient)
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Patient')
+              pk_column_name: id_patient
+      - name: series_uid
+        description: Mapping of Series_SeriesInstanceUID
+      - name: code
+        description: Mapping of ROISegmentation_ROIType
+      - name: identifier_dicom_value
+        description: Mapping of ROISegmentation_ReferencedSOPInstanceUID
+      - name: identifier_roi_value
+        description: Mapping of ROISegmentation_ROINumber
+      - name: identifier_file_value
+        description: Mapping of ROISegmentation_ROIFilename
+      - name: text
+        description: Mapping of ROISegmentation_ROIName
+      - name: note
+        description: Mapping of ROISegmentation_ROIDescription

@@ -1,0 +1,33 @@
+version: 2
+models:
+  - name: osiris_master_tab_Observation_causeofdeath
+    description: The master_tab models make it possible to transform the tabular OSIRIS model into a FHIR OSIRIS model
+    columns:
+      - name: id_causeofdeath
+        description: Mapping of Patient_Id+Instance_Id
+        tests:
+          - dbt_constraints.primary_key
+      - name: code_coding_code
+        description: "Fixed value = 69453-9"
+        tests:
+          - not_null
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Observation_codeableConcept')
+              pk_column_name: code
+      - name: subject
+        description: Mapping of Patient_Id
+        tests:
+          - not_null
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Patient')
+              pk_column_name: id_patient
+      - name: causeofdeath_effectiveDateTime
+        description: Mapping of Patient_LastNewsDate
+      - name: causeofdeath_valueCodeableConcept_coding_code
+        quote: true
+        description: Mapping of Patient_CauseOfDeath
+        tests:  
+          - not_null
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Observation_codeableConcept')
+              pk_column_name: code
