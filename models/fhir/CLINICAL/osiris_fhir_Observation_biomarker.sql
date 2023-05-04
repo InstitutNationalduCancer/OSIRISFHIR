@@ -32,7 +32,7 @@ SELECT
                 'unit', biomarker."value_unit",
                 'system', 'http://unitsofmeasure.org'
             ) END,
-        'valueString', CASE WHEN biomarker."value_unit" IS NULL THEN biomarker."value" END,
+        'valueString', CASE WHEN biomarker."value_unit" IS NULL THEN biomarker."value"::VARCHAR END,
         'derivedFrom', json_build_array(
             json_build_object(
                 'reference', fhir_ref(

@@ -15,6 +15,7 @@
 "http://terminology.hl7.org/CodeSystem/umls","C0522537","Xenograft"
 "http://terminology.hl7.org/CodeSystem/umls","C0225778","Pleural Fluid"
 "http://terminology.hl7.org/CodeSystem/umls","C0007806","Cerebrospinal Fluid"
+"http://terminology.hl7.org/CodeSystem/umls","C2827484","Fixed Slide"
 "http://terminology.hl7.org/CodeSystem/umls","C4039816",
 "https://github.com/siric-osiris/OSIRIS","O59-1","Normal"
 "https://github.com/siric-osiris/OSIRIS","O59-2","Tumoral"

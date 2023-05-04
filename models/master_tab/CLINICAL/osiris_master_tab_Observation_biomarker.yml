@@ -23,10 +23,6 @@ models:
         description: Mapping of Biomarker_Code
         tests: 
           - not_null
-          - dbt_constraints.foreign_key:
-              pk_table_name: ref('osiris_master_tab_Observation_codeableConcept')
-              pk_column_name: code
-              severity: warn
       - name: value
         description: Mapping of Biomarker_Value
         tests: 

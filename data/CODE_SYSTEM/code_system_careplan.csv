@@ -7,4 +7,5 @@
 "http://terminology.hl7.org/CodeSystem/umls","C0021083","Immunotherapy"
 "http://terminology.hl7.org/CodeSystem/umls","C0005961","Bone marrow transplant"
 "http://terminology.hl7.org/CodeSystem/umls","C0279694","Monoclonal antibody"
+"http://terminology.hl7.org/CodeSystem/umls","C93352","Target therapy"
 "http://terminology.hl7.org/CodeSystem/umls","C0439673","Unknown"

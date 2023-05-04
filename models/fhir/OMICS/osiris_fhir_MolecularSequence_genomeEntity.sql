@@ -36,7 +36,8 @@ SELECT
         'repository', json_build_array(
             json_build_object(
                 'name', genome."repository_genome_entity_db_name"::VARCHAR,
-                'datasetId', genome."repository_genome_entity_db_datasetid"::VARCHAR
+                'datasetId', genome."repository_genome_entity_db_datasetid"::VARCHAR,
+                'type', 'other'
             )
         )
     ) AS fhir

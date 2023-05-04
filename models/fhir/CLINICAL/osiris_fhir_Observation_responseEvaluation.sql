@@ -5,7 +5,7 @@ SELECT
         'id', fhir_id('{{ ref("osiris_master_tab_Observation_responseEvaluation") }}', "responseevaluation"."id_responseevaluation"::TEXT),
         'meta', json_build_object(
             'profile', json_build_array(
-                'http://fhir.arkhn.com/osiris/StructureDefinition/response-evaluation'
+                'https://build.fhir.org/ig/arkhn/arkhn-ig-osiris/StructureDefinition/response-evaluation'
             )
         ),
         'status', 'final',

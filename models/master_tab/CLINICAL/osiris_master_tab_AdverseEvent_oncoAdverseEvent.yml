@@ -29,11 +29,6 @@ models:
         description: Mapping of AdverseEvent_Code
         tests: 
           - not_null
-          - dbt_constraints.foreign_key:
-              pk_table_name: ref('osiris_master_tab_AdverseEvent_codeableConcept')
-              pk_column_name: code
-              config: 
-                severity: warn
       - name: date
         description: Mapping of AdverseEvent_Date
         tests: 

@@ -295,10 +295,12 @@ SELECT
             )
         ),
         'extension', json_build_array(
-            json_build_object(
+            CASE 
+                WHEN snp."extension_strand_biais_valueBoolean" IS NOT NULL THEN json_build_object(
                 'url', 'https://build.fhir.org/ig/arkhn/arkhn-ig-osiris/StructureDefinition/strand-bias',
                 'valueBoolean', snp."extension_strand_biais_valueBoolean"
-            )
+                )
+            END
         )
     ) AS fhir
 FROM

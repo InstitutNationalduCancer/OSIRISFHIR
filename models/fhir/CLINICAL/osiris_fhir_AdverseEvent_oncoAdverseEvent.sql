@@ -1,5 +1,5 @@
 SELECT
-    "adverseevent"."id_adverseevent" AS id,
+    adverseevent."id_adverseevent" AS id,
     json_build_object(
         'resourceType', 'AdverseEvent',
         'id', fhir_id('{{ ref("osiris_master_tab_AdverseEvent_oncoAdverseEvent") }}', "adverseevent"."id_adverseevent"::TEXT),

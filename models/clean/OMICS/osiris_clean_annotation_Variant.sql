@@ -11,7 +11,7 @@ WITH clean_temp AS (
             WHEN "GenomeEntity_Type" IS NULL THEN 'C0439673'
             ELSE RIGHT("GenomeEntity_Type", -POSITION(':' IN "GenomeEntity_Type"))
         END AS "genome_entity_type",
-        COALESCE("GenomeEntity_Database"::text, 'unknown') AS "repository_genome_entity_db_name",
+        COALESCE(RIGHT("GenomeEntity_Database"::text, -POSITION(':' IN "GenomeEntity_Database"::text)), 'unknown') AS "repository_genome_entity_db_name",
         COALESCE("GenomeEntity_Id"::text, 'unknown') AS "repository_genome_entity_db_datasetid",
         "GenomeEntity_Symbol" AS "component_gene_studied",
         CASE
@@ -26,13 +26,19 @@ WITH clean_temp AS (
         "Annotation_PfamDomain" AS "repository_pfam_domain_readsetid",
         "Annotation_PfamId" AS "repository_pfam_domain_datasetid",
         "Annotation_DNARegionName" AS "component_cytogenetic_location",
-        "Annotation_DNASequenceVariation" AS "component_dna_chg",
-        "Annotation_AminoAcidChange" AS "component_amino_acid_chg",
+        trim("Annotation_DNASequenceVariation") AS "component_dna_chg",
+        replace("Annotation_AminoAcidChange", ' ', '') AS "component_amino_acid_chg",
         "Annotation_GenomicSequenceVariation" AS "component_genomic_dna_chg",
         "Annotation_RNASequenceVariation" AS "component_rna_chg",
-        RIGHT("Annotation_AminoAcidChangeType"::text, -POSITION(':' IN "Annotation_AminoAcidChangeType"::text)) AS "component_amino_acid_chg_type",
+        CASE 
+            WHEN RIGHT("Annotation_AminoAcidChangeType"::text, -POSITION(':' IN "Annotation_AminoAcidChangeType"::text))='C0439673' THEN NULL
+            ELSE RIGHT("Annotation_AminoAcidChangeType"::text, -POSITION(':' IN "Annotation_AminoAcidChangeType"::text))
+        END AS "component_amino_acid_chg_type",
         "Annotation_FusionPrimeEnd" AS "derived_fusion_molecular_sequences",
-        "Annotation_Strand" AS "referenceseq_orientation"
+        CASE 
+            WHEN RIGHT("Annotation_Strand"::text, -POSITION(':' IN "Annotation_Strand"::text))='C0439673' THEN NULL
+            ELSE RIGHT("Annotation_Strand"::text, -POSITION(':' IN "Annotation_Strand"::text))
+        END AS "referenceseq_orientation"
     FROM
         {{ ref('OSIRIS_pivot_Annotation') }}
 )
