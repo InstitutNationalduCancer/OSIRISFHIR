@@ -1,0 +1,44 @@
+SELECT
+    "id_medication_administration" AS id,
+    json_build_object(
+        'resourceType', 'MedicationAdministration',
+        'id', fhir_id(
+            '{{ ref("osiris_master_tab_MedicationAdministration") }}',
+            "id_medication_administration"::TEXT
+        ),
+        'meta', json_build_object(
+            'profile', json_build_array(
+                'https://build.fhir.org/ig/arkhn/arkhn-ig-osiris/StructureDefinition/onco-imagingstudy-injection'
+            )
+        ),
+
+        'subject', json_build_object(
+            'reference', fhir_ref(
+                'Patient',
+                '{{ ref("osiris_master_tab_Patient") }}',
+                "subject"
+            )
+        ),
+        'status', 'completed',
+        'medicationReference', json_build_object(
+            'reference', fhir_ref(
+                'Medication',
+                '{{ ref("osiris_master_tab_Medication") }}',
+                "medication"
+            )
+        ),
+        'effectivePeriod', json_build_object(
+            'start', "effectivePeriod_start",
+            'end', "effectivePeriod_end"
+        ),
+        'effectiveDateTime', "effectiveDateTime",
+        'dosage', json_build_object(
+            'dose', json_build_object(
+                'value', "dosage_dose"
+            )
+        )
+    ) AS fhir,
+    false as is_deleted,
+    (now()::DATE - INTERVAL '1 day')::DATE as partition_date
+FROM
+    {{ ref('osiris_master_tab_MedicationAdministration') }}

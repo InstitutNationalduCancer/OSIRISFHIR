@@ -7,10 +7,11 @@ SELECT
         WHEN "AlterationOnSample_Actionability"::VARCHAR = 'OSIRIS:O82-1' THEN 'true'
         WHEN "AlterationOnSample_Actionability"::VARCHAR = 'OSIRIS:O82-2' THEN 'false'
         WHEN "AlterationOnSample_Actionability"::VARCHAR = 'UMLS:C0439673' THEN NULL
+        ELSE "AlterationOnSample_Actionability"::VARCHAR
     END AS "component_actionability_valueBoolean",
-    CASE 
-        WHEN "AlterationOnSample_ProposedForOrientation" = 'UMLS:C0439673' THEN NULL
-        ELSE "AlterationOnSample_ProposedForOrientation"
+    CASE
+        WHEN "AlterationOnSample_ProposedForOrientation"::VARCHAR = 'UMLS:C0439673' THEN NULL
+        ELSE "AlterationOnSample_ProposedForOrientation"::VARCHAR
     END AS "component_proposed_for_orientation_valueBoolean",
     RIGHT("Alteration_Chromosome"::text, -POSITION(':' IN "Alteration_Chromosome"::text)) AS "component_chromosome_valueCodeableConcept",
     "Alteration_GenomicStart" AS "component_exact_start_end_valueRange_low",

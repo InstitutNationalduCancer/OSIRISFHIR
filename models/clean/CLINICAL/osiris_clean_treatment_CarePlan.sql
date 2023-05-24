@@ -3,7 +3,7 @@ SELECT
     "Patient_Id" AS "subject",
     RIGHT("Treatment_Type", -POSITION(':' IN "Treatment_Type")) AS "category_coding_code",
     "Treatment_StartDate" AS "period_start",
-    "Treatment_EndDate" AS "period_end",
+    COALESCE("Treatment_EndDate", '3000-01-01'::DATE) AS "period_end",
     NULL AS "activity_detail_code", --missing column in pivot file
     "Patient_Id" || '-' || "TumorPathologyEvent_Ref" AS "activity_detail_reasonreference",
     "Treatment_LineNumber" AS "extension_treatment_line",
