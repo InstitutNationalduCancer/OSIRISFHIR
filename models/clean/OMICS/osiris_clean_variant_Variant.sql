@@ -24,7 +24,7 @@ SELECT
     "Variant_ReferenceAllele" AS "component_ref_allele_valueString",
     "Variant_AlternativeAllele" AS "component_alt_allele_valueString",
     RIGHT(
-        "Variant_DNASequenceVariationType", -POSITION(':' IN "Variant_DNASequenceVariationType")
+        "Variant_DNASequenceVariationType"::text, -POSITION(':' IN "Variant_DNASequenceVariationType"::text)
     ) AS "component_dna_chg_type_valueCodeableConcept",
     "VariantInSample_PositionReadDepth" AS "component_allelic_read_depth_valueQuantity",
     "VariantInSample_VariantReadDepth" AS "component_variant_read_depth_valueQuantity",
@@ -39,19 +39,19 @@ SELECT
             OR "VariantInSample_StrandBias"::VARCHAR = 'true' THEN true
     END AS "extension_strand_biais_valueBoolean",
     RIGHT(
-        "VariantInSample_GenomicSourceClass", -POSITION(':' IN "VariantInSample_GenomicSourceClass")
+        "VariantInSample_GenomicSourceClass"::text, -POSITION(':' IN "VariantInSample_GenomicSourceClass"::text)
     ) AS "component_genomic_source_class_valueCodeableConcept",
     RIGHT(
-        "VariantInSample_AllelicState", -POSITION(':' IN "VariantInSample_AllelicState")
+        "VariantInSample_AllelicState"::text, -POSITION(':' IN "VariantInSample_AllelicState"::text)
     ) AS "component_allelic_state_valueCodeableConcept",
     RIGHT(
-        "Validation_Type", -POSITION(':' IN "Validation_Type")
+        "Validation_Type"::text, -POSITION(':' IN "Validation_Type"::text)
     ) AS "validationType_coding",
     "Validation_Method" AS "validationProcess_text",
     CASE
-        WHEN "Validation_Status" = 'OSIRIS:O18-1' THEN 'in-process'
-        WHEN "Validation_Status" = 'OSIRIS:O18-2' THEN 'validated'
-        WHEN "Validation_Status" = 'UMLS:C0439673' THEN 'in-process'
+        WHEN "Validation_Status"::text = 'OSIRIS:O18-1' THEN 'in-process'
+        WHEN "Validation_Status"::text = 'OSIRIS:O18-2' THEN 'validated'
+        WHEN "Validation_Status"::text = 'UMLS:C0439673' THEN 'in-process'
     END AS "verification_status"
 FROM
     {{ ref('OSIRIS_pivot_Variant') }}

@@ -1,7 +1,10 @@
 SELECT
     "Patient_Id" || '-' || "Instance_Id" AS "id_treatment",
     "Patient_Id" AS "subject",
-    RIGHT("Treatment_Type", -POSITION(':' IN "Treatment_Type")) AS "category_coding_code",
+    CASE
+	WHEN "Treatment_Type" IS NOT NULL THEN RIGHT("Treatment_Type", -POSITION(':' IN "Treatment_Type")) 
+	ELSE 'C0439673' 
+	END AS "category_coding_code",
     "Treatment_StartDate" AS "period_start",
     COALESCE("Treatment_EndDate", '3000-01-01'::DATE) AS "period_end",
     NULL AS "activity_detail_code", --missing column in pivot file

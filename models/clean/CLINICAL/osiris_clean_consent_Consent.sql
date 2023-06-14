@@ -3,8 +3,9 @@ SELECT
     "Patient_Id" AS "patient",
     "Consent_Date" AS "dateTime",
     CASE
-        WHEN "Consent_GeneticAnalysisAuthorization" = 0 THEN 'deny'
-        WHEN "Consent_GeneticAnalysisAuthorization" = 1 THEN 'permit'
+        WHEN "Consent_GeneticAnalysisAuthorization" = '0' THEN 'deny' 
+        WHEN "Consent_GeneticAnalysisAuthorization" = '1' THEN 'permit'
+        ELSE NULL
     END AS "provision_type"
 FROM
     {{ ref('OSIRIS_pivot_Consent') }}

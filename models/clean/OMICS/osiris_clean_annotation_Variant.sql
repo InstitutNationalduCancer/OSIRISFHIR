@@ -4,30 +4,30 @@ WITH clean_temp AS (
         "Patient_Id" AS "subject",
         "Alteration_Ref" AS "alteration",
         CASE
-            WHEN "AlterationOnSample_AlterationType" = 'Genetic variant' THEN 'O15-5'
-            ELSE RIGHT("AlterationOnSample_AlterationType", -POSITION(':' IN "AlterationOnSample_AlterationType"))
+            WHEN "AlterationOnSample_AlterationType"::text = 'Genetic variant' THEN 'O15-5'
+            ELSE RIGHT("AlterationOnSample_AlterationType"::text, -POSITION(':' IN "AlterationOnSample_AlterationType"::text))
         END AS "component_dna_chg_type",
         CASE
             WHEN "GenomeEntity_Type" IS NULL THEN 'C0439673'
-            ELSE RIGHT("GenomeEntity_Type", -POSITION(':' IN "GenomeEntity_Type"))
+            ELSE RIGHT("GenomeEntity_Type"::text, -POSITION(':' IN "GenomeEntity_Type"::text))
         END AS "genome_entity_type",
         COALESCE(RIGHT("GenomeEntity_Database"::text, -POSITION(':' IN "GenomeEntity_Database"::text)), 'unknown') AS "repository_genome_entity_db_name",
         COALESCE("GenomeEntity_Id"::text, 'unknown') AS "repository_genome_entity_db_datasetid",
         "GenomeEntity_Symbol" AS "component_gene_studied",
         CASE
             WHEN "Annotation_ReferenceType" IS NULL THEN 'C0439673'
-            ELSE RIGHT("Annotation_ReferenceType", -POSITION(':' IN "Annotation_ReferenceType"))
+            ELSE RIGHT("Annotation_ReferenceType"::text, -POSITION(':' IN "Annotation_ReferenceType"::text))
         END AS "referenceseq_referenceseqid",
-        COALESCE("Annotation_ReferenceDatabase", 'unknown') AS "repository_reference_db_name",
-        COALESCE("Annotation_ReferenceValue", 'unknown') AS "repository_reference_db_datasetid",
-        RIGHT("Annotation_MutationPredictionAlgorithm", -POSITION(':' IN "Annotation_MutationPredictionAlgorithm")) AS "component_mutation_prediction_software",
+        COALESCE("Annotation_ReferenceDatabase"::text, 'unknown') AS "repository_reference_db_name",
+        COALESCE("Annotation_ReferenceValue"::text, 'unknown') AS "repository_reference_db_datasetid",
+        RIGHT("Annotation_MutationPredictionAlgorithm"::text, -POSITION(':' IN "Annotation_MutationPredictionAlgorithm"::text)) AS "component_mutation_prediction_software",
         "Annotation_MutationPredictionValue" AS "component_mutation_prediction_evidence_value",
         "Annotation_MutationPredictionScore" AS "component_mutation_prediction_score",
         "Annotation_PfamDomain" AS "repository_pfam_domain_readsetid",
         "Annotation_PfamId" AS "repository_pfam_domain_datasetid",
         "Annotation_DNARegionName" AS "component_cytogenetic_location",
-        trim("Annotation_DNASequenceVariation") AS "component_dna_chg",
-        replace("Annotation_AminoAcidChange", ' ', '') AS "component_amino_acid_chg",
+        trim("Annotation_DNASequenceVariation"::text) AS "component_dna_chg",
+        replace("Annotation_AminoAcidChange"::text, ' ', '') AS "component_amino_acid_chg",
         "Annotation_GenomicSequenceVariation" AS "component_genomic_dna_chg",
         "Annotation_RNASequenceVariation" AS "component_rna_chg",
         CASE 
