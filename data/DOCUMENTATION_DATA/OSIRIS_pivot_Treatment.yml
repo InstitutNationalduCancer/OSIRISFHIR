@@ -1,0 +1,32 @@
+version: 2
+
+seeds:
+  - name: OSIRIS_pivot_Treatment
+    description: OSIRIS_pivot_Treatment available at https://github.com/siric-osiris/OSIRIS/blob/MED-OSIRIS/pivot/OSIRIS_pivot_Treatment.csv
+    columns: 
+      - name: Instance_Id
+        description: The primary key for Treatment
+      - name: Patient_Id
+        description: Foreign Key from OSIRIS_pivot_Patient
+      - name: TumorPathologyEvent_Ref
+        description: Foreign Key from OSIRIS_pivot_TumorPathologyEvent
+      - name: Treatment_Type
+        description: Type of treatment
+      - name: Treatment_LineNumber
+        description: Treatment line number
+      - name: Treatment_ActivityCode
+        description: Common Classification of Medical Acts (CCAM)
+      - name: Treatment_StartDate
+        description: Start date of treatment
+      - name: Treatment_EndDate
+        description: End date of treatment
+      - name: Treatment_ClinicalTrialContext
+        description: "Is the treatment part of a clinical trial?"
+      - name: Treatment_ClinicalTrialName
+        description: Name of the clinical trial
+      - name: Treatment_ClinicalTrialId
+        description: EudraCT number of the clinical trial
+      - name: Treatment_SurgeryResectionQuality
+        description: "Assessment of the quality of the resection of the surgical procedure."
+      - name: Treatment_SurgeryNature
+        description: "Nature of the surgery"

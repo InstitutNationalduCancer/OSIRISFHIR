@@ -19,7 +19,7 @@ SELECT
         'managingOrganization', json_build_object(
             'reference', fhir_ref(
                 'Organization',
-                '"osiris_master_tab_Organization"',
+                '{{ ref("osiris_master_tab_Organization") }}',
                 patient."managingorganization_valuereference"
             )
         ),
@@ -33,7 +33,7 @@ SELECT
                         'valueReference', json_build_object(
                             'reference', fhir_ref(
                                 'Organization',
-                                '"osiris_master_tab_Organization"',
+                                '{{ ref("osiris_master_tab_Organization") }}',
                                 patient."extension_origin_center_valuereference")
                         )
                     ) END,

@@ -11,7 +11,7 @@ SELECT
         'subject', json_build_object(
             'reference', fhir_ref(
                 'Patient',
-                '"osiris_master_tab_Patient"',
+                '{{ ref("osiris_master_tab_Patient") }}',
                 careplan."subject"::VARCHAR)
         ),
         'category', json_build_array(
@@ -35,7 +35,7 @@ SELECT
             json_build_object(
                 'reference', fhir_ref(
                     'ResearchStudy',
-                    '"osiris_master_tab_ResearchStudy"',
+                    '{{ ref("osiris_master_tab_ResearchStudy") }}',
                     careplan."supportinginfo"::VARCHAR
                 )
             )
@@ -47,7 +47,7 @@ SELECT
                         json_build_object(
                             'reference', fhir_ref(
                                 'Condition',
-                                '"osiris_master_tab_Condition"',
+                                '{{ ref("osiris_master_tab_Condition") }}',
                                 careplan."activity_detail_reasonreference"::VARCHAR
                             )
                         )

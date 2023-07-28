@@ -15,7 +15,7 @@ SELECT
         'subject', json_build_object(
             'reference', fhir_ref(
                 'Patient',
-                '"osiris_master_tab_Patient"',
+                '{{ ref("osiris_master_tab_Patient") }}',
                 feature."subject"::VARCHAR
             )
         ),
@@ -23,7 +23,7 @@ SELECT
             json_build_object(
                 'reference', fhir_ref(
                     'Observation',
-                    '"osiris_master_tab_Observation_radiomicscriteria"',
+                    '{{ ref("osiris_master_tab_Observation_radiomicscriteria") }}',
                     feature."hasmember"::VARCHAR
                 )
             )

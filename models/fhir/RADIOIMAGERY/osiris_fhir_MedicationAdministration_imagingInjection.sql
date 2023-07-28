@@ -15,7 +15,7 @@ SELECT
         'subject', json_build_object(
             'reference', fhir_ref(
                 'Patient',
-                '"osiris_master_tab_Patient"',
+                '{{ ref("osiris_master_tab_Patient") }}',
                 "subject"
             )
         ),
@@ -23,7 +23,7 @@ SELECT
         'medicationReference', json_build_object(
             'reference', fhir_ref(
                 'Medication',
-                '"osiris_master_tab_Medication"',
+                '{{ ref("osiris_master_tab_Medication") }}',
                 "medication"
             )
         ),

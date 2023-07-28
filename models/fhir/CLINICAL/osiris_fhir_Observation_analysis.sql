@@ -21,7 +21,7 @@ SELECT
         'subject', json_build_object(
             'reference', fhir_ref(
                 'Patient',
-                '"osiris_master_tab_Patient"',
+                '{{ ref("osiris_master_tab_Patient") }}',
                 observation."subject"::VARCHAR)
         ),
         'status', 'final',
@@ -49,7 +49,7 @@ SELECT
             json_build_object(
                 'reference', fhir_ref(
                     'Condition',
-                    '"osiris_master_tab_Condition"',
+                    '{{ ref("osiris_master_tab_Condition") }}',
                     observation."focus"::VARCHAR
                 )
             )

@@ -16,4 +16,4 @@ FROM
 LEFT JOIN
     {{ ref('osiris_master_tab_ImagingStudy') }} AS imagingstudy
     ON
-        radiomicsimagefilter."series" = imagingstudy."id_series"
+        radiomicsimagefilter."series"::VARCHAR = imagingstudy."id_series"

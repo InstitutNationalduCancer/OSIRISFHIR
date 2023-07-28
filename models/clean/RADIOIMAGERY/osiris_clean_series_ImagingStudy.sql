@@ -1,5 +1,6 @@
 SELECT
     "Instance_Id" AS "id_series",
+    "Patient_Id" AS "subject",
     "Equipment_Ref" AS "series_performer_actor",
     "Study_Ref" AS "imagingstudy",
     "Series_SeriesNumber" AS "series_number",
@@ -34,9 +35,3 @@ SELECT
     END AS "series_extension_patient_height"
 FROM
     {{ ref('OSIRIS_pivot_Series') }}
-WHERE
-    "Study_Ref" IN (
-        SELECT "Instance_Id"
-        FROM
-            {{ ref('OSIRIS_pivot_Study') }}
-    )

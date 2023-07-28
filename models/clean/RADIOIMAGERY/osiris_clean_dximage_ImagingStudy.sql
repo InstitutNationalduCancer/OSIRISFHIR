@@ -1,5 +1,6 @@
 SELECT
     "Instance_Id" AS "id_dximage",
+    "Patient_Id" AS "subject",
     "CommonImage_Ref" AS "commonimage",
     "DXImage_PatientOrientation" AS "series_extension_dximage_patient_orientation",
     "DXImage_KVP" AS "series_extension_dximage_kvp",
@@ -11,4 +12,3 @@ SELECT
     END AS "series_extension_dximage_image_laterality"
 FROM
     {{ ref ('OSIRIS_pivot_DXImage') }}
-

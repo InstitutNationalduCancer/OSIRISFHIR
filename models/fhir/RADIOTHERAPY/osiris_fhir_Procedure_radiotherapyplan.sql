@@ -75,7 +75,7 @@ extension_extension_volume AS (
                     'valueReference', json_build_object(
                         'reference', fhir_ref(
                             'BodyStructure',
-                            '"osiris_master_tab_BodyStructure_radiotherapyvolume"',
+                            '{{ ref("osiris_master_tab_BodyStructure_radiotherapyvolume") }}',
                             planrt."volume"::VARCHAR
                         )
                     )
@@ -150,7 +150,7 @@ extension_extension_basedon AS (
                     'url', 'imagingStudyRef',
                     'valueReference', fhir_ref(
                         'ImagingStudy',
-                        '"osiris_master_tab_ImagingStudy"',
+                        '{{ ref("osiris_master_tab_ImagingStudy") }}',
                         "extension_basedon_imagingstudyref"::VARCHAR
                     )
                     ) END,
@@ -163,7 +163,7 @@ extension_extension_basedon AS (
                     'valueReference', json_build_object(
                         'reference', fhir_ref(
                             'Observation',
-                            '"osiris_master_tab_Observation_roisegmentation"',
+                            '{{ ref("osiris_master_tab_Observation_roisegmentation") }}',
                             "extension_basedon_rtstructuid"::VARCHAR
                         )
                     )
@@ -305,15 +305,15 @@ SELECT
         'subject', json_build_object(
             'reference', fhir_ref(
                 'Patient',
-                '"osiris_master_tab_Patient"',
-                planrt."subject"::VARCHAR
+                '{{ ref("osiris_master_tab_Patient") }}',
+                planrt."subject"
             )
         ),
         'partOf', json_build_array(
             json_build_object(
                 'reference', fhir_ref(
                     'Procedure',
-                    '"osiris_master_tab_Procedure_radiotherapyphase"',
+                    '{{ ref("osiris_master_tab_Procedure_radiotherapyphase") }}',
                     planrt."partof"::VARCHAR
                 )
             )

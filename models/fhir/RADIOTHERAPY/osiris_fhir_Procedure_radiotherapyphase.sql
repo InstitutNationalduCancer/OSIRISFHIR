@@ -14,7 +14,7 @@ SELECT
         'subject', json_build_object(
             'reference', fhir_ref(
                 'Patient',
-                '"osiris_master_tab_Patient"',
+                '{{ ref("osiris_master_tab_Patient") }}',
                 phasert."subject"::VARCHAR
             )
         ),
@@ -22,7 +22,7 @@ SELECT
             json_build_object(
                 'reference', fhir_ref(
                     'Procedure',
-                    '"osiris_master_tab_Procedure_radiotherapycourse"',
+                    '{{ ref("osiris_master_tab_Procedure_radiotherapycourse") }}',
                     phasert."partof"::VARCHAR
                 )
             )

@@ -1,3 +1,4 @@
+WITH planrt_without_doseuid_adjustment AS (
 SELECT
     planrt."id_planrt",
     planrt."subject",
@@ -37,3 +38,34 @@ LEFT JOIN
 LEFT JOIN
     {{ ref('osiris_clean_series_ImagingStudy') }} AS series
     ON planrt."extension_basedon_seriesuid"::VARCHAR = series."id_series"::VARCHAR
+
+)
+SELECT
+    "id_planrt",
+    "subject",
+    "partof",
+    "extension_basedon_imagingstudyref",
+    "category_coding_code",
+    "extension_numberOfFractions",
+    "performedPeriod_start",
+    "performedPeriod_end",
+    "extension_reasonReplanification",
+    "extension_AlgorithName",
+    "extension_basedon_seriesuid",
+    "extension_basedon_rtstructuid",
+    CASE WHEN "volume" IS NOT NULL THEN "extension_dosetovolume_rtdoseuid"
+    END AS "extension_dosetovolume_rtdoseuid",
+    "identifier_value",
+    "extension_modandtech_radiotherapyModality",
+    "extension_modandtech_radiotherapyTechnique",
+    "extension_modandtech_radiotherapyTreatmentMachinePlanned",
+    "extension_energyisotope_quantityEnergyOrIsotope",
+    "extension_energyisotope_nameEnergyOrIsotope",
+    "volume",
+    "extension_dosetovolume_fractionDose",
+    "extension_dosetovolume_numberOfFractions",
+    "extension_dosetovolume_totalDose",
+    "code_coding_code"
+FROM
+    planrt_without_doseuid_adjustment
+    
