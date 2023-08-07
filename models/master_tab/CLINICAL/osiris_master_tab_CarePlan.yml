@@ -1,0 +1,37 @@
+version: 2
+models:
+  - name: osiris_master_tab_CarePlan
+    description: The master_tab models make it possible to transform the tabular OSIRIS model into a FHIR OSIRIS model
+    columns:
+      - name: id_careplan
+        description: Primary Key
+        tests:
+          - dbt_constraints.primary_key
+      - name: "subject"
+        description: Foreign Key from osiris_master_tab_Patient
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Patient')
+              pk_column_name: id_patient
+      - name: "activity_detail_reasonReference"
+        description: Foreign Key from osiris_master_tab_Condition
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_Condition')
+              pk_column_name: id_condition
+      - name: "supportingInfo"
+        description: Foreign Key from osiris_master_tab_ResearchStudy
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_master_tab_ResearchStudy')
+              pk_column_name: id_researchstudy
+      - name: category_coding_code
+        description: Mapping of Treatment_Type
+      - name: period_start
+        description: Mapping of Treatment_StartDate
+      - name: period_end
+        description: Mapping of Treatment_EndDate
+      - name: extension_treatment_line
+        description: Mapping of Treatment_LineNumber
+      - name: activity_activity_code
+        description: Mapping of Treatment_ActivityCode

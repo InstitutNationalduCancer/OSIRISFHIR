@@ -1,0 +1,17 @@
+version: 2
+seeds:
+  - name: OSIRIS_pivot_Biomarker
+    description: OSIRIS_pivot_Biomarker available at https://github.com/siric-osiris/OSIRIS/blob/MED-OSIRIS/pivot/OSIRIS_pivot_Biomarker.csv
+    columns:
+      - name: Instance_Id
+        description: Primary Key
+      - name: Patient_Id
+        description: Foreign Key from OSIRIS_pivot_Patient
+      - name: Analysis_Ref
+        description: Foreign Key from OSIRIS_pivot_Analysis
+      - name: Biomarker_Code
+        description: "The name of the biomarker."
+      - name: Biomarker_Value
+        description: "The expression value of the biomarker."
+      - name: Biomarker_Unit
+        description: "The biomarker expression unit."

@@ -1,0 +1,32 @@
+repos:
+
+- repo: https://github.com/commitizen-tools/commitizen
+  rev: v2.19.0
+  hooks:
+    - id: commitizen
+      stages: [commit-msg]
+
+- repo: local
+  hooks:
+    - id: jupyter-nb-clear-output
+      name: jupyter-nb-clear-output
+      files: notebooks/.*\.ipynb$
+      stages: [commit]
+      language: system
+      entry: jupyter nbconvert --clear-output notebooks/*.ipynb
+
+- repo: https://github.com/sqlfluff/sqlfluff
+
+  rev: 1.4.5
+
+  hooks:
+    - id: sqlfluff-fix
+      entry: sqlfluff fix --force
+      types: [ sql ]
+      additional_dependencies: [ '.[dbt]' ]
+
+      args: [--exclude-rules, "L026, L028, L031, L034"]
+    - id: sqlfluff-lint
+      types: [ sql ]
+      additional_dependencies: ['.[dbt]']
+      args: [--exclude-rules, "L026, L028, L031, L034"]

@@ -1,0 +1,20 @@
+version: 2
+seeds:
+  - name: code_system_condition
+    description: "The sources of the valueset are:
+
+      - https://fhir.arkhn.com/osiris/ValueSet-Laterality.html
+
+      - https://fhir.arkhn.com/osiris/ValueSet-TumorPathologyEventType.html
+
+      - https://fhir.arkhn.com/osiris/ValueSet-Topography.html
+      
+      - https://fhir.arkhn.com/osiris/ValueSet-Morphology.html"
+    columns:
+      - name: code
+        description: Code in the system code used
+      - name: display
+        description: Display of the code
+      - name: code_system
+        description: System code from which the code is derived
+        

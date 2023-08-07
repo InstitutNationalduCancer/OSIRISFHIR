@@ -1,0 +1,14 @@
+version: 2
+models:
+  - name: osiris_clean_organizations_Organization
+    description: Mapping of organizations data to fhir path
+    columns:
+      - name: "id_organization"
+        description: Mapping of finess (Primary Key)
+        tests:
+          - dbt_constraints.primary_key
+      - name: "identifier_finess_value"
+        description: Mapping of finess
+      - name: "name"
+        description: Mapping of org_name
+

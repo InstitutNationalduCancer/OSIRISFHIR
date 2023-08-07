@@ -1,0 +1,25 @@
+version: 2
+models:
+  - name: osiris_clean_dximage_ImagingStudy
+    description: Mapping of OSIRIS_pivot_DXImage data to fhir path
+    columns:
+      - name: id_dximage
+        description: Mapping of Instance_Id (Primary Key)
+        tests:
+          - dbt_constraints.primary_key
+      - name: commonimage
+        description: Mapping of CommonImage_Ref (Foreign Key from osiris_clean_commonimage_ImagingStudy)
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_commonimage_ImagingStudy')
+              pk_column_name: id_commonimage
+      - name: series_extension_dximage_image_laterality
+        description: Mapping of DXImage_ImageLaterality
+      - name: series_extension_dximage_patient_orientation
+        description: Mapping of DXImage_PatientOrientation
+      - name: series_extension_dximage_kvp
+        description: Mapping of DXImage_KVP
+      - name: series_extension_dximage_exposure
+        description: Mapping of DXImage_Exposure
+      - name: series_extension_dximage_exposure_time
+        description: Mapping of DXImage_ExposureTime

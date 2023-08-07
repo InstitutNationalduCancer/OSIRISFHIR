@@ -1,0 +1,12 @@
+version: 2
+models:
+  - name: osiris_fhir_MedicationAdministration_imagingInjection
+    description: Create the ImageryInjection profil from MedicationAdministration resource (osiris_master_tab_MedicationAdministration)
+    columns:
+      - name: "id"
+        description: Id
+        tests:
+          - dbt_constraints.primary_key
+      - name: "fhir"
+        description: Fhir format of the instance
+

@@ -1,0 +1,25 @@
+version: 2
+seeds:
+  - name: OSIRIS_pivot_Study
+    description: OSIRIS_pivot_Study available at https://github.com/siric-osiris/OSIRIS/blob/MED-OSIRIS/pivot/OSIRIS_pivot_Study.csv
+    columns:
+      - name: Instance_Id
+        description: Primary Key
+      - name: Patient_Id
+        description: Foreign Key from OSIRIS_pivot_Patient
+      - name: Analysis_Ref
+        description: Foreign Key from OSIRIS_pivot_Analysis
+      - name: Study_InstitutionName
+        description: "Name of the organization or institution responsible for the study"
+      - name: Study_AcquisitionDate
+        description: "Date and time of acquisition"
+      - name: Study_NbStudyRelatedSeries
+        description: "Number of series contained in the study"
+      - name: Study_Location
+        description: "Study storage location (PACS, web server etc)"
+      - name: Study_StudyDescription
+        description: "Study Description"
+      - name: Study_ModalitiesInStudy
+        description: "List of all the modalities used"
+      - name: Study_StudyInstanceUID
+        description: "Unique number to identify the study"

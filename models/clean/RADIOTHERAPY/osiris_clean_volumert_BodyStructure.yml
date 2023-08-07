@@ -1,0 +1,17 @@
+version: 2
+models:
+  - name: osiris_clean_volumert_BodyStructure
+    description: Mapping of OSIRIS_pivot_VolumeRT data to fhir path
+    columns:
+      - name: id_volume
+        description: Mapping of Instance_Id
+        tests:
+          - dbt_constraints.primary_key
+      - name: identifier_value
+        description: Mapping of Volume_Identifier
+      - name: location_coding_code
+        description: Mapping of Volume_Location
+      - name: locationQualifier_coding_code
+        description: Mapping of Volume_LocationQualifier
+      - name: description
+        description: Mapping of Volume_Description

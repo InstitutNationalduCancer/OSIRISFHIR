@@ -1,0 +1,16 @@
+version: 2
+models:
+  - name: osiris_clean_equipment_Device
+    description: "Mapping of OSIRIS_pivot_Equipment data to fhir path"
+    columns:
+      - name: "id_device"
+        description: "Mapping of Instance_Id (Primary Key)"
+        tests:
+          - dbt_constraints.primary_key
+      - name: "deviceName_name"
+        description: "Mapping of Equipment_ModelName"
+      - name: "manufacturer"
+        description: "Mapping of Equipment_Manufacturer"
+      - name: "version"
+        description: "Mapping of Equipment_SoftwareVersion"
+

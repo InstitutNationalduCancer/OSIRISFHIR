@@ -1,0 +1,29 @@
+version: 2
+seeds:
+  - name: OSIRIS_pivot_MRImage
+    description: OSIRIS_pivot_MRImage available at https://github.com/siric-osiris/OSIRIS/blob/MED-OSIRIS/pivot/OSIRIS_pivot_MRImage.csv
+    columns:
+      - name: Instance_Id
+        description: Primary Key
+      - name: Patient_Id
+        description: Foreign Key from OSIRIS_pivot_Patient
+      - name: CommonImage_Ref
+        description: Foreign Key from OSIRIS_pivot_CommonImage
+      - name: MRImage_MRAcquisitionType
+        description: "Describe the type of acquisition, particularly the number of dimension"
+      - name: MRImage_EchoTime
+        description: "Echo time in ms"
+      - name: MRImage_FlipAngle
+        description: "Flip angle of the RF pulse in degrees impacting the T1 weighting"
+      - name: MRImage_ReceiveCoilName
+        description: "Receive coil name"
+      - name: MRImage_MagneticFieldStrength
+        description: "Nominal field strength of the magnet, in Tesla"
+      - name: MRImage_ImagingFrequency
+        description: "Precession frequency in MHz of the target core"
+      - name: MRImage_SequenceName
+        description: "Type of pulse sequence"
+      - name: MRImage_InversionTime
+        description: "Period between the middle of the RF inversion pulse and the middle of the excitation pulse to detect the amount of longitudinal magnetization"
+      - name: MRImage_RepetitionTime
+        description: "Repetition time in ms"

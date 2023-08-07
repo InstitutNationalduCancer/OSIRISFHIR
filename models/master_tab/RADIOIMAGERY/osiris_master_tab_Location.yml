@@ -1,0 +1,11 @@
+version: 2
+models:
+  - name: osiris_master_tab_Location
+    description: The master_tab models make it possible to transform the tabular OSIRIS model into a FHIR OSIRIS model
+    columns:
+      - name: id_location
+        description: Primary Key
+        tests:
+          - dbt_constraints.primary_key
+      - name: name
+        description: Mapping of Study_InstitutionName

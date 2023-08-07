@@ -1,0 +1,15 @@
+version: 2
+models:
+  - name: osiris_master_tab_ImagingStudy_codeableConcept
+    description: The master_tab models make it possible to transform the tabular OSIRIS model into a FHIR OSIRIS model
+    columns:
+      - name: id
+        description: Primary Key (concatenation between code and code_dicom)
+      - name: code
+        description: Code
+      - name: display
+        description: Display
+      - name: code_dicom
+        description: Code in the dicom code system
+      - name: code_system
+        description: System code from which the code is derived

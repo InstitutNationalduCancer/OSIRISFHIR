@@ -1,0 +1,12 @@
+version: 2
+seeds:
+  - name: code_system_radiomics
+    description: The source of the code system is https://ibsi.readthedocs.io/en/latest/
+    columns:
+      - name: code
+        description: Code in the system code used
+      - name: display
+        description: Display of the code
+      - name: code_system
+        description: System code from which the code is derived
+        

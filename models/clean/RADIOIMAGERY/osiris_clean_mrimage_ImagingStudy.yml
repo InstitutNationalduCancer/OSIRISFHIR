@@ -1,0 +1,33 @@
+version: 2
+models:
+  - name: osiris_clean_mrimage_ImagingStudy
+    description: Mapping of OSIRIS_pivot_MRImage data to fhir path
+    columns:
+      - name: id_mrimage
+        description: Mappinf of Instance_Id (Primary Key)
+        tests:
+          - dbt_constraints.primary_key
+      - name: commonimage
+        description: Mapping of CommonImage_Ref (Foreign  Key from osiris_clean_commonimage_ImagingStudy)
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_commonimage_ImagingStudy')
+              pk_column_name: id_commonimage
+      - name: series_extention_mrimage_sequence_name
+        description: Mapping of MRImage_SequenceName
+      - name: series_extention_mrimage_magnetic_field_strength
+        description: Mapping of MRImage_MagneticFieldStrength
+      - name: series_extention_mrimage_mr_acquisition_type
+        description: Mapping of MRImage_MRAcquisitionType
+      - name: series_extention_mrimage_repetition_time
+        description: Mapping of MRImage_RepetitionTime
+      - name: series_extention_mrimage_echo_time
+        description: Mapping of MRImage_EchoTime
+      - name: series_extention_mrimage_imaging_frequency
+        description: Mapping of MRImage_ImagingFrequency
+      - name: series_extention_mrimage_flip_angle
+        description: Mapping of MRImage_FlipAngle
+      - name: series_extention_mrimage_inversion_time
+        description: Mapping of MRImage_InversionTime
+      - name: series_extention_mrimage_receive_coil_name
+        description: Mapping of MRImage_ReceiveCoilName

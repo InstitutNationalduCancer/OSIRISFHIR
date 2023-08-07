@@ -1,0 +1,15 @@
+version: 2
+seeds:
+  - name: OSIRIS_pivot_EnergyOrIsotopeRT
+    description: OSIRIS_pivot_EnergyOrIsotopeRT available at https://github.com/siric-osiris/OSIRIS/blob/MED-OSIRIS/pivot/OSIRIS_pivot_EnergyOrIsotopeRT.csv
+    columns:
+      - name: Instance_Id
+        description: Primary Key
+      - name: Patient_Id
+        description: Foreign Key from OSIRIS_pivot_Patient
+      - name: PlanRT_Ref
+        description: Foreign Key from OSIRIS_pivot_PlanRT
+      - name: EnergyOrIsotope_IsotopeName
+        description: "The isotope used for radiotherapy"
+      - name: EnergyOrIsotope_Quantity
+        description: "Energy spectrum of a radiation characterized by a maximum value. For electrons, the maximum energy is given in MeV. For photons, the maximum acceleration voltage is given in MV or kV, although these are not energy units. Dicom Tag (300A,0114)"

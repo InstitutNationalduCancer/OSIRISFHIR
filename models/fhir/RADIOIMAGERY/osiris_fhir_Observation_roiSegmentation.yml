@@ -1,0 +1,11 @@
+version: 2
+models:
+  - name: osiris_fhir_Observation_roiSegmentation
+    description: Create the ROISegmentation profil from Observation resource (osiris_master_tab_Observation_roisegmentation)
+    columns:
+      - name: id
+        description: Id
+        tests:
+          - dbt_constraints.primary_key
+      - name: fhir
+        description: Fhir format of the instance

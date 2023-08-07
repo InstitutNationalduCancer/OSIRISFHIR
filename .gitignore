@@ -1,0 +1,8 @@
+
+target/
+dbt_packages/
+logs/
+data/CLINICAL/
+data/RADIOIMAGERY/
+data/RADIOMICS/
+data/RADIOTHERAPY/

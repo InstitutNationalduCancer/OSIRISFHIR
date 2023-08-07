@@ -1,0 +1,33 @@
+version: 2
+seeds:
+  - name: OSIRIS_pivot_PlanRT
+    description: OSIRIS_pivot_PlanRT available at https://github.com/siric-osiris/OSIRIS/blob/MED-OSIRIS/pivot/OSIRIS_pivot_PlanRT.csv
+    columns:
+      - name: Instance_Id
+        description: Primary Key
+      - name: Plan_NumberOfFractions
+        description: "Number of Fractions. If delivred, it should be extracted from MOSAIQ/ARIA Record and Verify. If planned, it corresponds to Dicom Tag (300A,0078)"
+      - name: Plan_ReasonReplanification
+        description: "Reason Replanification. It should be extracted from MOSAIQ/ARIA Record and Verify"
+      - name: Plan_AlgorithmName
+        description: "Name of the algorithm. Dicom Tag (0066,0036)"
+      - name: PhaseRT_Ref
+        description: Foreign Key from OSIRIS_pivot_PhaseRT
+      - name: Plan_RtDoseUID
+        description: Foreign Key from OSIRIS_pivot_DoseToVolume? (Reference SOP Instance UID of the RT Plan)
+      - name: Plan_EndDate
+        description: "End date and time. They should be extracted from MOSAIQ/ARIA Record and Verify"
+      - name: Plan_StartDate
+        description: "Start date and time. They should be extracted from MOSAIQ/ARIA Record and Verify"
+      - name: Plan_RtPlanUID
+        description: "Reference SOP Instance UID of the RT Plan. Dicom Tag (0008,1155)"
+      - name: Plan_Type
+        description: "Type (planned or delivered)"
+      - name: ModalityAndTechnique_Ref
+        description: Foreign Key from OSIRIS_pivot_ModalityAndTechnique
+      - name: ROISegmentation_Ref
+        description: Foreign Key from OSIRIS_pivot_ROISegmentation (SOP reference Instance UID of RT Structure Set. Dicom Tag (0008,1155))
+      - name: Patient_Id
+        description: Foreign Key from OSIRIS_pivot_Patient
+      - name: Series_Ref
+        description: Foreign Key from OSIRIS_pivot_Series (Series Instance UID of the planning image. Dicom Tag (0020,000E))

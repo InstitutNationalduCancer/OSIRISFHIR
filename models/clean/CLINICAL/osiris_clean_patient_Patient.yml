@@ -1,0 +1,32 @@
+version: 2
+models:
+  - name: osiris_clean_patient_Patient
+    description: Mapping of OSIRIS_pivot_Patient data to fhir path
+    columns:
+      - name: "id_patient"
+        description: Mapping of Patient_Id (Primary key)
+        tests:
+          - dbt_constraints.primary_key
+      - name: "managingorganization_valuereference"
+        description: Mapping of Patient_ProviderCenterId (Foreign Key from osiris_clean_organizations_Organization)
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_organizations_Organization')
+              pk_column_name: id_organization
+      - name: extension_origin_center_valuereference
+        description: Mapping of Patient_OriginCenterId
+        tests:
+          - dbt_constraints.foreign_key:
+              pk_table_name: ref('osiris_clean_organizations_Organization')
+              pk_column_name: id_organization
+      - name: "identifier_value"
+        description: Mapping of Patient_Id
+      - name: "gender"
+        description: Mapping of Patient_Gender
+      - name: "birthdate"
+        description: Mapping of Patient_BirthDate
+      - name: "deceaseddatetime"
+        description: Mapping of Patient_DeathDate
+      - name: "extension_ethnicity_valueCodeableConcept_coding_code"
+        description: Mapping of Patient_Ethnicity
+      

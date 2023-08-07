@@ -1,0 +1,11 @@
+[tool.sqlfluff.core]
+exclude_rules = "L044, L034"
+dialect = "postgres"
+[tool.sqlfluff.rules]
+max_line_length = 130
+
+[tool.semantic_release]
+version_variable = 'setup.py:__version__'
+branch = 'main'
+version_source = 'tag'
+upload_to_pypi = false

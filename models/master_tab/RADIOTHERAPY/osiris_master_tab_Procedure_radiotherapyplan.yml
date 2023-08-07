@@ -1,0 +1,50 @@
+version: 2
+models:
+  - name: osiris_master_tab_Procedure_radiotherapyplan
+    columns:
+      - name: subject
+        description: Mapping of Patient_Id
+      - name: partof
+        description: Mapping of Phase_Ref
+      - name: category_coding_code
+        description: Mapping of Plan_Type
+      - name: extension_numberOfFractions
+        description: Mapping of Plan_NumberOfFractions
+      - name: performedPeriod_start
+        description: Mapping of Plan_StartDate
+      - name: performedPeriod_end
+        description: Mapping of Plan_EndDate
+      - name: extension_dosetovolume_totalDose
+        description: Mapping of DoseToVolume_TotalDose
+      - name: extension_modandtech_radiotherapyModality
+        description: Mapping of ModalityAndTechnique_Modality
+      - name: volume
+        description: Mapping of VolumeRT_Ref
+      - name: extension_AlgorithName
+        description: Mapping of Plan_AlgorithmName
+      - name: extension_modandtech_radiotherapyTechnique
+        description: Mapping of ModalityAndTechnique_Technique
+      - name: code_coding_code
+        description: "Fixed code = 1255724003"
+      - name: extension_reasonReplanification
+        description: Mapping of Plan_ReasonReplanification
+      - name: extension_dosetovolume_rtdoseuid
+        description: Mapping of Plan_RtDoseUID
+      - name: extension_energyisotope_nameEnergyOrIsotope
+        description: Mapping of EnergyOrIsotope_IsotopeName
+      - name: extension_dosetovolume_fractionDose
+        description: Mapping of DoseToVolume_FractionDose
+      - name: extension_energyisotope_quantityEnergyOrIsotope
+        description: Mapping of EnergyOrIsotope_Quantity
+      - name: extension_basedon_seriesuid
+        description: Mapping of Series_Ref
+      - name: identifier_value
+        description: Mapping of Plan_RtPlanUID
+      - name: extension_basedon_rtstructuid
+        description: Mapping of ROISegmentation_Ref
+      - name: id_planrt
+        description: Mapping of Instance_Id
+      - name: extension_dosetovolume_numberOfFractions
+        description: Mapping of DoseToVolume_NumberOfFractions
+      - name: extension_modandtech_radiotherapyTreatmentMachinePlanned
+        description: Mapping of ModalityAndTechnique_TreatmentMachinePlanned
