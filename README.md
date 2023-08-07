@@ -1,15 +1,6 @@
-Welcome to your new dbt project!
+## Context
 
-### Using the starter project
-
-Try running the following commands:
-- dbt run
-- dbt test
-
-
-### Resources:
-- Learn more about dbt [in the docs](https://docs.getdbt.com/docs/introduction)
-- Check out [Discourse](https://discourse.getdbt.com/) for commonly asked questions and answers
-- Join the [chat](https://community.getdbt.com/) on Slack for live discussions and support
-- Find [dbt events](https://events.getdbt.com) near you
-- Check out [the blog](https://blog.getdbt.com/) for the latest news on dbt's development and best practices
+> Le projet OSIRIS-MED est la poursuite du travail déjà effectué avec le consortium **OSIRIS** et **financé par INCA.**
+> **Objectif :**  Création d’un set de données de 130 variables cliniques et génomiques / modèle “OSIRIS” / analyse fédérée du modèle / compatibilité FHIR-OSIRIS / comparaison OSIRIS à mcode et OMOP : modèle osiris
+>
+> Le projet OSIRIS-MED est la poursuite du travail déjà effectué avec le consortium **OSIRIS** et **financé par INCA.**
